@@ -1,0 +1,209 @@
+[D] [Eng::Log::log:133] [+] Logging to file 'engine.log' enabled
+   Using GLFW v3.3.2
+   Using GLEW v2.1.0
+OpenGL properties:
+   Vendor  . . . :  NVIDIA Corporation
+   Driver  . . . :  NVIDIA GeForce RTX 3070 Laptop GPU/PCIe/SSE2
+   Version . . . :  4.6.0 NVIDIA 551.61 [4.6]
+   No error  . . :  disabled
+   GLSL  . . . . :  4.60 NVIDIA
+   Extensions  . :  402
+   Bindless  . . :  supported
+   Max group sz  :  1024, 1024, 64
+   Max group cnt :  2147483647, 65535, 65535
+   Max anisotropy:  16.0
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): rusted_metal_26_09_diffuse.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 4096x4096, 8388608 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 12, 1x1, 8 bytes
+[D] [Eng::Texture::load:456] Type: 2D, Level: 1/13, IntFormat: 0x83f0, x: 4096, y: 4096
+[D] [Eng::Texture::load:456] Type: 2D, Level: 2/13, IntFormat: 0x83f0, x: 2048, y: 2048
+[D] [Eng::Texture::load:456] Type: 2D, Level: 3/13, IntFormat: 0x83f0, x: 1024, y: 1024
+[D] [Eng::Texture::load:456] Type: 2D, Level: 4/13, IntFormat: 0x83f0, x: 512, y: 512
+[D] [Eng::Texture::load:456] Type: 2D, Level: 5/13, IntFormat: 0x83f0, x: 256, y: 256
+[D] [Eng::Texture::load:456] Type: 2D, Level: 6/13, IntFormat: 0x83f0, x: 128, y: 128
+[D] [Eng::Texture::load:456] Type: 2D, Level: 7/13, IntFormat: 0x83f0, x: 64, y: 64
+[D] [Eng::Texture::load:456] Type: 2D, Level: 8/13, IntFormat: 0x83f0, x: 32, y: 32
+[D] [Eng::Texture::load:456] Type: 2D, Level: 9/13, IntFormat: 0x83f0, x: 16, y: 16
+[D] [Eng::Texture::load:456] Type: 2D, Level: 10/13, IntFormat: 0x83f0, x: 8, y: 8
+[D] [Eng::Texture::load:456] Type: 2D, Level: 11/13, IntFormat: 0x83f0, x: 4, y: 4
+[D] [Eng::Texture::load:456] Type: 2D, Level: 12/13, IntFormat: 0x83f0, x: 2, y: 2
+[D] [Eng::Texture::load:456] Type: 2D, Level: 13/13, IntFormat: 0x83f0, x: 1, y: 1
+Texture (normal): rusted_metal_26_09_normal.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 4096x4096, 16777216 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 12, 1x1, 16 bytes
+[D] [Eng::Texture::load:456] Type: 2D, Level: 1/13, IntFormat: 0x8dbd, x: 4096, y: 4096
+[D] [Eng::Texture::load:456] Type: 2D, Level: 2/13, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:456] Type: 2D, Level: 3/13, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:456] Type: 2D, Level: 4/13, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:456] Type: 2D, Level: 5/13, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:456] Type: 2D, Level: 6/13, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:456] Type: 2D, Level: 7/13, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:456] Type: 2D, Level: 8/13, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:456] Type: 2D, Level: 9/13, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:456] Type: 2D, Level: 10/13, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:456] Type: 2D, Level: 11/13, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:456] Type: 2D, Level: 12/13, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:456] Type: 2D, Level: 13/13, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): rusted_metal_26_09_roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 4096x4096, 8388608 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 12, 1x1, 8 bytes
+[D] [Eng::Texture::load:456] Type: 2D, Level: 1/13, IntFormat: 0x8dbb, x: 4096, y: 4096
+[D] [Eng::Texture::load:456] Type: 2D, Level: 2/13, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:456] Type: 2D, Level: 3/13, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:456] Type: 2D, Level: 4/13, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:456] Type: 2D, Level: 5/13, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:456] Type: 2D, Level: 6/13, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:456] Type: 2D, Level: 7/13, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:456] Type: 2D, Level: 8/13, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:456] Type: 2D, Level: 9/13, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:456] Type: 2D, Level: 10/13, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:456] Type: 2D, Level: 11/13, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:456] Type: 2D, Level: 12/13, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:456] Type: 2D, Level: 13/13, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): rusted_metal_26_09_metalness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 4096x4096, 8388608 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 12, 1x1, 8 bytes
+[D] [Eng::Texture::load:456] Type: 2D, Level: 1/13, IntFormat: 0x8dbb, x: 4096, y: 4096
+[D] [Eng::Texture::load:456] Type: 2D, Level: 2/13, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:456] Type: 2D, Level: 3/13, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:456] Type: 2D, Level: 4/13, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:456] Type: 2D, Level: 5/13, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:456] Type: 2D, Level: 6/13, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:456] Type: 2D, Level: 7/13, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:456] Type: 2D, Level: 8/13, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:456] Type: 2D, Level: 9/13, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:456] Type: 2D, Level: 10/13, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:456] Type: 2D, Level: 11/13, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:456] Type: 2D, Level: 12/13, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:456] Type: 2D, Level: 13/13, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): [none]
+Texture (normal): [none]
+Texture (height): [none]
+Texture (roughness): [none]
+Texture (metalness): [none]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 4, f: 2
+[*] [OGL] Buffer detailed info: Buffer object 1 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 2 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 2589, f: 4096
+[*] [OGL] Buffer detailed info: Buffer object 3 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 4 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+LOD: 2, v: 1443, f: 2048
+LOD: 3, v: 835, f: 1024
+LOD: 4, v: 501, f: 511
+LOD: 5, v: 324, f: 265
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 1053, f: 1920
+[*] [OGL] Buffer detailed info: Buffer object 5 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 6 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+LOD: 2, v: 538, f: 960
+LOD: 3, v: 284, f: 480
+LOD: 4, v: 150, f: 240
+LOD: 5, v: 99, f: 148
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 559, f: 960
+[*] [OGL] Buffer detailed info: Buffer object 7 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 8 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+LOD: 2, v: 410, f: 668
+LOD: 3, v: 207, f: 274
+LOD: 4, v: 190, f: 240
+[D] [Eng::Ovo::load::<lambda_1>::operator ():187] Processing light...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 122, f: 180
+[*] [OGL] Buffer detailed info: Buffer object 9 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 10 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 122, f: 180
+[*] [OGL] Buffer detailed info: Buffer object 11 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 12 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 122, f: 180
+[*] [OGL] Buffer detailed info: Buffer object 13 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 14 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 122, f: 180
+[*] [OGL] Buffer detailed info: Buffer object 15 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 16 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 2589, f: 4096
+[*] [OGL] Buffer detailed info: Buffer object 17 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 18 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+LOD: 2, v: 1443, f: 2048
+LOD: 3, v: 833, f: 1023
+LOD: 4, v: 505, f: 512
+LOD: 5, v: 322, f: 262
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 17, f: 8
+[*] [OGL] Buffer detailed info: Buffer object 19 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Shader::load:254] Shader compiled
+[D] [Eng::Shader::load:254] Shader compiled
+[D] [Eng::Shader::load:254] Shader compiled
+[D] [Eng::Shader::load:254] Shader compiled
+[?] [Eng::Program::getParamLocation] Variable 'normalMat' not found
+[?] [Eng::Program::getParamLocation] Variable 'mtlEmission' not found
+[?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
+[?] [Eng::Program::getParamLocation] Variable 'mtlRoughness' not found
+[?] [Eng::Program::getParamLocation] Variable 'texture0' not found
+[?] [Eng::Program::getParamLocation] Variable 'texture1' not found
+[?] [Eng::Program::getParamLocation] Variable 'texture2' not found
+[?] [Eng::Program::getParamLocation] Variable 'texture3' not found
+[D] [Eng::Texture::load:456] Type: 2D, Level: 1/1, IntFormat: 0x8058, x: 1, y: 1
+[D] [Eng::Base::free:346] Releasing context...
+[D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
+[D] [Eng::Managed::forceRelease:187] 45 managed object(s) released out of 45
+   Context deinitialized
+[D] [Eng::Log::free:107] [-] Logging completed
