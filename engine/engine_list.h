@@ -33,6 +33,7 @@ public: //
       lights,
       meshes,
       transparents,
+      meshes_and_transparents,
 
       // Terminator:
       last

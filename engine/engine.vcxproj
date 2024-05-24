@@ -110,6 +110,7 @@
     <ClCompile Include="engine_pipeline.cpp" />
     <ClCompile Include="engine_pipeline_default.cpp" />
     <ClCompile Include="engine_pipeline_fullscreen2d.cpp" />
+    <ClCompile Include="engine_pipeline_OIT.cpp" />
     <ClCompile Include="engine_pipeline_shadowmapping.cpp" />
     <ClCompile Include="engine_program.cpp" />
     <ClCompile Include="engine_serializer.cpp" />
@@ -137,6 +138,7 @@
     <ClInclude Include="engine_pipeline.h" />
     <ClInclude Include="engine_pipeline_default.h" />
     <ClInclude Include="engine_pipeline_fullscreen2d.h" />
+    <ClInclude Include="engine_pipeline_OIT.h" />
     <ClInclude Include="engine_pipeline_shadowmapping.h" />
     <ClInclude Include="engine_program.h" />
     <ClInclude Include="engine_serializer.h" />

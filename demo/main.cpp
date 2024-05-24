@@ -18,6 +18,7 @@
    #include <iostream>
    #include <chrono>
 
+#include "engine_pipeline_OIT.h"
 
 
 //////////   
@@ -36,6 +37,7 @@
 
    // Pipelines:
    Eng::PipelineDefault dfltPipe;
+   Eng::PipelineOIT oitPipe;
    Eng::PipelineFullscreen2D full2dPipe;
 
    // Flags:
@@ -115,7 +117,7 @@ void keyboardCallback(int key, int scancode, int action, int mods)
    // ENG_LOG_DEBUG("key: %d, scancode: %d, action: %d, mods: %d", key, scancode, action, mods);
    switch (key)
    {
-      case 'W': if (action == 0) dfltPipe.setWireframe(!dfltPipe.isWireframe()); break;         
+      case 'W': if (action == 0) oitPipe.setWireframe(!oitPipe.isWireframe()); break;         
       case 'S': if (action == 0) showShadowMap = !showShadowMap; break;
       case 'P': if (action == 0)
                 {
@@ -203,12 +205,13 @@ int main(int argc, char *argv[])
       
       // Main rendering:
       eng.clear();      
-         dfltPipe.render(camera, list);
+         oitPipe.render(camera, list);
 
          if (showShadowMap)
          {            
             eng.clear();      
-            full2dPipe.render(dfltPipe.getShadowMappingPipeline().getShadowMap(), list);
+            
+            //full2dPipe.render(dfltPipe.getShadowMappingPipeline().getShadowMap(), list);
          }
       eng.swap();    
 

@@ -1,23 +1,14 @@
-/**
- * @file		engine_pipeline.cpp
- * @brief	Simple forward-rendering pipeline
- *
- * @author	Achille Peternier (achille.peternier@supsi.ch), (C) SUPSI
- */
 
 
+// Main includes:
+#include "engine_pipeline_OIT.h"
+#include "engine.h"
 
-//////////////
-// #INCLUDE //
-//////////////
+// OGL:
+#include "engine_pipeline_OIT.h"
 
-   // Main include:
-   #include "engine.h"
-
-   // OGL:      
-   #include <GL/glew.h>
-   #include <GLFW/glfw3.h>
-
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 
 /////////////
@@ -71,13 +62,11 @@ static const std::string pipeline_fs = R"(
    layout (bindless_sampler) uniform sampler2D texture1; // Normal
    layout (bindless_sampler) uniform sampler2D texture2; // Roughness
    layout (bindless_sampler) uniform sampler2D texture3; // Metalness
-   layout (bindless_sampler) uniform sampler2D texture4; // Shadow map
 #else
    layout (binding = 0) uniform sampler2D texture0; // Albedo
    layout (binding = 1) uniform sampler2D texture1; // Normal
    layout (binding = 2) uniform sampler2D texture2; // Roughness
    layout (binding = 3) uniform sampler2D texture3; // Metalness
-   layout (binding = 4) uniform sampler2D texture4; // Shadow map
 #endif
 
 // Uniform (material):
@@ -102,28 +91,6 @@ in vec2 uv;
 // Output to the framebuffer:
 out vec4 outFragment;
 
-
-/**
- * Computes the amount of shadow for a given fragment.
- * @param fragPosLightSpace frament coords in light space
- * @return shadow intensity
- */
-float shadowAmount(vec4 fragPosLightSpace)
-{
-   // From "clip" to "ndc" coords:
-   vec3 projCoords = fragPosLightSpace.xyz / fragPosLightSpace.w;
-    
-   // Transform to the [0,1] range:
-   projCoords = projCoords * 0.5f + 0.5f;
-   
-   // Get closest depth in the shadow map:
-   float closestDepth = texture(texture4, projCoords.xy).r;    
-   
-   // Check whether current fragment is in shadow:
-   return projCoords.z > closestDepth  ? 1.0f : 0.0f;   
-}  
-
-
 //////////
 // MAIN //
 //////////
@@ -135,8 +102,7 @@ void main()
    vec4 normal_texel = texture(texture1, uv);
    vec4 roughness_texel = mtlRoughness * texture(texture2, uv);
    vec4 metalness_texel = mtlMetalness * texture(texture3, uv);
-   float shadow_texel = texture(texture4, uv).r;
-   float justUseIt = albedo_texel.r + normal_texel.r + roughness_texel.r + metalness_texel.r + shadow_texel;
+   float justUseIt = albedo_texel.r + normal_texel.r + roughness_texel.r + metalness_texel.r;
 
    // Material props:
    justUseIt += mtlEmission.r + mtlAlbedo.r + mtlOpacity + mtlRoughness + mtlMetalness;
@@ -150,40 +116,26 @@ void main()
    // Light only front faces:
    if (dot(N, V) > 0.0f)
    {
-      float shadow = 1.0f - shadowAmount(fragPositionLightSpace);     
-      
       // Diffuse term:   
       float nDotL = max(0.0f, dot(N, L));      
-      fragColor += roughness_texel.r * nDotL * lightColor * shadow;
+      fragColor += roughness_texel.r * nDotL * lightColor;
       
       // Specular term:     
       vec3 H = normalize(L + V);                     
       float nDotH = max(0.0f, dot(N, H));         
-      fragColor += (1.0f - roughness_texel.r) * pow(nDotH, 70.0f) * lightColor * shadow;         
+      fragColor += (1.0f - roughness_texel.r) * pow(nDotH, 70.0f) * lightColor;         
    }
    
    outFragment = vec4((mtlEmission / float(totNrOfLights)) + fragColor * albedo_texel.xyz, justUseIt);      
 })";
 
-
-
-/////////////////////////
-// RESERVED STRUCTURES //
-/////////////////////////
-
-/**
- * @brief PipelineDefault reserved structure.
- */
-struct Eng::PipelineDefault::Reserved
+struct Eng::PipelineOIT::Reserved
 {  
    Eng::Shader vs;
    Eng::Shader fs;
    Eng::Program program;
    
    bool wireframe;
-
-   PipelineShadowMapping shadowMapping;
-
 
    /**
     * Constructor. 
@@ -192,63 +144,32 @@ struct Eng::PipelineDefault::Reserved
    {}
 };
 
+ENG_API Eng::PipelineOIT::PipelineOIT() : reserved(std::make_unique<Eng::PipelineOIT::Reserved>())
+{
+   ENG_LOG_DETAIL("[+]");
+   this->setProgram(reserved->program);
+}
 
-
-///////////////////////////////////
-// BODY OF CLASS PipelineDefault //
-///////////////////////////////////
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Constructor.
- */
-ENG_API Eng::PipelineDefault::PipelineDefault() : reserved(std::make_unique<Eng::PipelineDefault::Reserved>())
-{	
-   ENG_LOG_DETAIL("[+]");      
+Eng::PipelineOIT::PipelineOIT(const std::string& name) : Eng::Pipeline(name), reserved(std::make_unique<Eng::PipelineOIT::Reserved>())
+{
+   ENG_LOG_DETAIL("[+]");
    this->setProgram(reserved->program);
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Constructor with name.
- * @param name node name
- */
-ENG_API Eng::PipelineDefault::PipelineDefault(const std::string &name) : Eng::Pipeline(name), reserved(std::make_unique<Eng::PipelineDefault::Reserved>())
-{	   
-   ENG_LOG_DETAIL("[+]");   
-   this->setProgram(reserved->program);
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Move constructor. 
- */
-ENG_API Eng::PipelineDefault::PipelineDefault(PipelineDefault &&other) : Eng::Pipeline(std::move(other)), reserved(std::move(other.reserved))
-{  
+ENG_API Eng::PipelineOIT::PipelineOIT(PipelineOIT&& other) : Eng::Pipeline(std::move(other)), reserved(std::move(other.reserved))
+{
    ENG_LOG_DETAIL("[M]");
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Destructor.
- */
-ENG_API Eng::PipelineDefault::~PipelineDefault()
-{	
+ENG_API Eng::PipelineOIT::~PipelineOIT()
+{
    ENG_LOG_DETAIL("[-]");
    if (this->isInitialized())
       free();
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Initializes this pipeline. 
- * @return TF
- */
-bool ENG_API Eng::PipelineDefault::init()
+bool Eng::PipelineOIT::init()
 {
    // Already initialized?
    if (this->Eng::Managed::init() == false)
@@ -272,12 +193,7 @@ bool ENG_API Eng::PipelineDefault::init()
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Releases this pipeline.
- * @return TF
- */
-bool ENG_API Eng::PipelineDefault::free()
+bool Eng::PipelineOIT::free()
 {
    if (this->Eng::Managed::free() == false)
       return false;
@@ -286,50 +202,21 @@ bool ENG_API Eng::PipelineDefault::free()
    return true;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Gets a reference to the shadow mapping pipeline.
- * @return shadow mapping pipeline reference
- */
-const Eng::PipelineShadowMapping ENG_API &Eng::PipelineDefault::getShadowMappingPipeline() const
-{
-   return reserved->shadowMapping;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Gets the status of the wireframe status.
- * @return wireframe status
- */
-bool ENG_API Eng::PipelineDefault::isWireframe() const
+bool Eng::PipelineOIT::isWireframe() const
 {
    return reserved->wireframe;
 }
 
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Sets the status of the wireframe flag.
- * @param flag wireframe flag
- */
-void ENG_API Eng::PipelineDefault::setWireframe(bool flag)
+ENG_API void Eng::PipelineOIT::setWireframe(bool flag)
 {
    reserved->wireframe = flag;
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Main rendering method for the pipeline.
- * @param camera camera matrix
- * @param proj projection matrix
- * @param list list of renderables
- * @return TF
- */
-bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::mat4 &proj, const Eng::List &list)
-{	
+
+
+bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, const Eng::List& list)
+{
    // Safety net:
    if (list == Eng::List::empty)
    {
@@ -379,9 +266,6 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
       const Eng::List::RenderableElem &lightRe = list.getRenderableElem(l);     
       const Eng::Light &light = dynamic_cast<const Eng::Light &>(lightRe.reference.get());
 
-      // Render shadow map:
-      reserved->shadowMapping.render(glm::inverse(lightRe.matrix), light.getProjMatrix(), list);
-
       // Re-enable this pipeline's program:
       program.render();   
       glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
@@ -389,10 +273,10 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
 
       lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera); // To convert from eye coords into light space    
       program.setMat4("lightMatrix", lightFinalMatrix);
-      reserved->shadowMapping.getShadowMap().render(4);      
       
       // Render meshes:
-      list.render(camera, proj, Eng::List::Pass::meshes_and_transparents);
+      list.render(camera, proj, Eng::List::Pass::meshes);
+      list.render(camera, proj, Eng::List::Pass::transparents);      
    }
 
    // Disable blending, in case we used it:
@@ -408,14 +292,10 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
 }
 
 
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-/**
- * Shortcut for using a camera instead of the explicit matrices.
- * @param camera camera to use
- * @param list list of renderables
- * @return TF
- */
-bool ENG_API Eng::PipelineDefault::render(const Eng::Camera &camera, const Eng::List &list)
+bool Eng::PipelineOIT::render(const Eng::Camera& camera, const Eng::List& list)
 {
    return this->render(glm::inverse(camera.getWorldMatrix()), camera.getProjMatrix(), list);
 }
+
+
+

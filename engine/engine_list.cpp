@@ -177,7 +177,7 @@ bool ENG_API Eng::List::process(const Eng::Node& node, const glm::mat4& prevMatr
         //reserved->renderableElem.insert(reserved->renderableElem.begin() + reserved->nrOfLights, 1, re);
         //reserved->renderableElem.push_back(re);
 
-        
+
         if (const auto mesh = dynamic_cast<const Eng::Mesh*>(&node); mesh->getMaterial().getOpacity() < 1.0f)
         {
             reserved->renderableElem.push_back(re);
@@ -237,6 +237,10 @@ bool ENG_API Eng::List::render(const glm::mat4& cameraMatrix, const glm::mat4& p
     //////////////////////////
     case Pass::transparents: //
         startRange = reserved->nrOfLights + reserved->nrOfSolidMeshes;
+        break;
+
+    case Pass::meshes_and_transparents:
+        startRange = reserved->nrOfLights;
         break;
     }
 

@@ -191,19 +191,10 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
-[D] [Eng::Shader::load:254] Shader compiled
-[D] [Eng::Shader::load:254] Shader compiled
-[?] [Eng::Program::getParamLocation] Variable 'normalMat' not found
-[?] [Eng::Program::getParamLocation] Variable 'mtlEmission' not found
-[?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
-[?] [Eng::Program::getParamLocation] Variable 'mtlRoughness' not found
-[?] [Eng::Program::getParamLocation] Variable 'texture0' not found
-[?] [Eng::Program::getParamLocation] Variable 'texture1' not found
-[?] [Eng::Program::getParamLocation] Variable 'texture2' not found
-[?] [Eng::Program::getParamLocation] Variable 'texture3' not found
+[?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
 [D] [Eng::Texture::load:456] Type: 2D, Level: 1/1, IntFormat: 0x8058, x: 1, y: 1
 [D] [Eng::Base::free:346] Releasing context...
 [D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
-[D] [Eng::Managed::forceRelease:187] 45 managed object(s) released out of 45
+[D] [Eng::Managed::forceRelease:187] 39 managed object(s) released out of 39
    Context deinitialized
 [D] [Eng::Log::free:107] [-] Logging completed

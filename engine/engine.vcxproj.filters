@@ -90,6 +90,9 @@
     <ClCompile Include="engine_pipeline_fullscreen2d.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="engine_pipeline_OIT.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h">
@@ -165,6 +168,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="engine_pipeline_fullscreen2d.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="engine_pipeline_OIT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
