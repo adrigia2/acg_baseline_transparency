@@ -87,6 +87,12 @@ in vec4 fragPosition;
 in vec4 fragPositionLightSpace;
 in vec3 normal;
 in vec2 uv;
+
+struct NodeType {
+  vec4 color;
+  float depth;
+  uint next;
+};
  
 // Output to the framebuffer:
 out vec4 outFragment;

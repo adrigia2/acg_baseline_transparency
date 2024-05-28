@@ -93,6 +93,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="engine.cpp" />
+    <ClCompile Include="engine_acbo.cpp" />
     <ClCompile Include="engine_bitmap.cpp" />
     <ClCompile Include="engine_camera.cpp" />
     <ClCompile Include="engine_container.cpp" />
@@ -121,6 +122,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="engine.h" />
+    <ClInclude Include="engine_acbo.h" />
     <ClInclude Include="engine_bitmap.h" />
     <ClInclude Include="engine_camera.h" />
     <ClInclude Include="engine_container.h" />

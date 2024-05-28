@@ -7,48 +7,45 @@
 #pragma once
 
 
-
 /**
  * @brief Class for modeling a Vertex Array Object (VAO).
  */
 class ENG_API Vao final : public Eng::Object, public Eng::Managed
 {
-//////////
+    //////////
 public: //
-//////////
+    //////////
 
-   // Special values:
-   static Vao empty;
+    // Special values:
+    static Vao empty;
 
-   // Const/dest:
-   Vao();
-   Vao(Vao &&other);
-   Vao(Vao const &) = delete;
-   ~Vao();   
-   
-   // Get/set:   
-   uint32_t getOglHandle() const;
+    // Const/dest:
+    Vao();
+    Vao(Vao&& other);
+    Vao(Vao const&) = delete;
+    ~Vao();
 
-   // Rendering methods:
-   static void reset();
-   bool render(uint32_t value = 0, void *data = nullptr) const;
+    // Get/set:   
+    uint32_t getOglHandle() const;
 
-   // Managed:
-   bool init() override;
-   bool free() override;
+    // Rendering methods:
+    static void reset();
+
+    bool render(uint32_t value = 0, void* data = nullptr) const;
+
+    // Managed:
+    bool init() override;
+    bool free() override;
 
 
-///////////
+    ///////////
 private: //
-///////////
+    ///////////
 
-   // Reserved:
-   struct Reserved;
-   std::unique_ptr<Reserved> reserved;
+    // Reserved:
+    struct Reserved;
+    std::unique_ptr<Reserved> reserved;
 
-   // Const/dest:
-   Vao(const std::string &name);   
+    // Const/dest:
+    Vao(const std::string& name);
 };
-
-
-
