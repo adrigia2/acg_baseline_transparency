@@ -116,7 +116,9 @@
     <ClCompile Include="engine_program.cpp" />
     <ClCompile Include="engine_serializer.cpp" />
     <ClCompile Include="engine_shader.cpp" />
+    <ClCompile Include="engine_ssbo.cpp" />
     <ClCompile Include="engine_texture.cpp" />
+    <ClCompile Include="engine_texture_storage.cpp" />
     <ClCompile Include="engine_vao.cpp" />
     <ClCompile Include="engine_vbo.cpp" />
   </ItemGroup>
@@ -145,7 +147,9 @@
     <ClInclude Include="engine_program.h" />
     <ClInclude Include="engine_serializer.h" />
     <ClInclude Include="engine_shader.h" />
+    <ClInclude Include="engine_ssbo.h" />
     <ClInclude Include="engine_texture.h" />
+    <ClInclude Include="engine_texture_storage.h" />
     <ClInclude Include="engine_vao.h" />
     <ClInclude Include="engine_vbo.h" />
   </ItemGroup>
