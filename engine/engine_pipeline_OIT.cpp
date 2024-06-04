@@ -174,11 +174,26 @@ void main()
    outFragment = nodes[nodeIdx].color;      
 })";
 
+static const std::string pipeline_cs = R"(
+
+
+
+
+
+
+)";
+
 struct Eng::PipelineOIT::Reserved
 {
     Eng::Shader vs;
     Eng::Shader fs;
+    Eng::Shader cs;
+    
     Eng::Program program;
+    Eng::Program programCS;
+    
+    //Eng::Fbo fbo;
+    Eng::Texture renderTexture;
 
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
@@ -239,6 +254,14 @@ bool Eng::PipelineOIT::init()
     // Build:
     reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
     reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);
+    //reserved->cs.load(Eng::Shader::Type::compute, pipeline_cs);
+    
+    //if(reserved->programCS.build({reserved->cs}) == false)
+    //{
+    //    ENG_LOG_ERROR("Unable to build compute program");
+    //    return false;
+    //}
+    
     if (reserved->program.build({reserved->vs, reserved->fs}) == false)
     {
         ENG_LOG_ERROR("Unable to build default program");
@@ -246,6 +269,8 @@ bool Eng::PipelineOIT::init()
     }
     this->setProgram(reserved->program);
 
+    
+    
     // init ACBO:
     if (reserved->acbo.init() == false)
     {
@@ -257,13 +282,21 @@ bool Eng::PipelineOIT::init()
     int height = Eng::Base::dfltWindowSizeY;
 
     std::vector<GLuint> headPtrClearBuf(width*height, 0xffffffff);
-    
+
     //reserved->pbo.create(headPtrClearBuf);
     reserved->acbo.create();
     reserved->ssbo.create(reserved->maxNodes  * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
     reserved->textureStorage.create(width, height, GL_R32UI);
-    
 
+    reserved->renderTexture.create(width,height,Texture::Format::none);
+
+    //reserved->fbo.attachTexture(reserved->renderTexture);
+    //if (reserved->fbo.validate() == false)
+    //{
+    //    ENG_LOG_ERROR("Unable to init FBO");
+    //    return false;
+    //}
+    
     // Done: 
     this->setDirty(false);
     return true;
@@ -339,6 +372,8 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
 
     program.setUInt("maxNodes", reserved->maxNodes);
 
+    //reserved->fbo.render();
+    
     for (uint32_t l = 0; l < totNrOfLights; l++)
     {
         clearBuffers();
@@ -373,6 +408,9 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         list.render(camera, proj, Eng::List::Pass::transparents);
     }
 
+    
+    //Eng::Fbo::reset(Eng::Base::dfltWindowSizeX, Eng::Base::dfltWindowSizeY);   
+    
     // Disable blending, in case we used it:
     if (list.getNrOfLights() > 1)
         glDisable(GL_BLEND);

@@ -193,6 +193,7 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
+[!] [engine_texture.cpp, Eng::Texture::create:502] Invalid params
 [*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
 [?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
