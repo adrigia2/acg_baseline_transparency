@@ -1,22 +1,9 @@
 #pragma once
-#include <GL/glew.h>
-
 #include "engine.h"
 
 namespace Eng
 {
 
-    enum BufferNames {
-        COUNTER_BUFFER = 0,
-        LINKED_LIST_BUFFER
-      };
-
-    struct ListNode {
-        glm::vec4 color;
-        GLfloat depth;
-        GLuint next;
-    };
-    
     class ENG_API PipelineOIT final : public Eng::Pipeline
     {
     public:
@@ -41,10 +28,6 @@ namespace Eng
         void ClearBuffers();
         bool free() override;
 
-        GLuint buffers[2], fsQuad, headPtrTex;
-        GLuint pass1Index, pass2Index;
-        GLuint clearBuf;
-        
 
     private:
         struct Reserved;

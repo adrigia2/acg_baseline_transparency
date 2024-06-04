@@ -345,6 +345,8 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
          return false;
       }
 
+   glDepthMask(GL_TRUE);
+
    // Just to update the cache:
    this->Eng::Pipeline::render(glm::mat4(1.0f), glm::mat4(1.0f), list);
 
@@ -392,7 +394,7 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
       reserved->shadowMapping.getShadowMap().render(4);      
       
       // Render meshes:
-      list.render(camera, proj, Eng::List::Pass::meshes_and_transparents);
+      list.render(camera, proj, Eng::List::Pass::meshes);
    }
 
    // Disable blending, in case we used it:
