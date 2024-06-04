@@ -75,14 +75,16 @@ uint32_t ENG_API Eng::Acbo::getOglHandle() const
     return reserved->oglId;
 }
 
-bool Eng::Acbo::create(uint32_t size, uint32_t format, uint32_t usage)
+bool Eng::Acbo::create(uint32_t size, void* data, uint32_t usage)
 {
-    glBufferData(GL_ATOMIC_COUNTER_BUFFER, size, nullptr, usage);
+    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, reserved->oglId);
+    glBufferData(GL_ATOMIC_COUNTER_BUFFER, size, data, usage);
     return true;
 }
 
 bool Eng::Acbo::create()
 {
+    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, reserved->oglId);
     glBufferData(GL_ATOMIC_COUNTER_BUFFER, sizeof(GLuint), NULL, GL_DYNAMIC_DRAW);
     return true;
 }
@@ -135,8 +137,11 @@ bool ENG_API Eng::Acbo::free()
  * Unbind any vertex array object.  
  */
 void ENG_API Eng::Acbo::reset()
-{	   
-    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, 0);
+{
+    GLuint zero = 0;
+    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, reserved->oglId);
+    glBufferSubData(GL_ATOMIC_COUNTER_BUFFER, 0, sizeof(GLuint), &zero);
+
 }
 
 
@@ -149,7 +154,7 @@ void ENG_API Eng::Acbo::reset()
  */
 bool ENG_API Eng::Acbo::render(uint32_t value, void *data) const
 {	   
-    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, 0, reserved->oglId);
+    glBindBufferBase(GL_ATOMIC_COUNTER_BUFFER, value, reserved->oglId);
    
     // Done:
     return true;

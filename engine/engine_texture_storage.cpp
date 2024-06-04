@@ -227,7 +227,7 @@ bool ENG_API Eng::TextureStorage::free()
  * @param format pixel layout
  * @return TF
  */
-bool ENG_API Eng::TextureStorage::create(uint32_t sizeX, uint32_t sizeY)
+bool ENG_API Eng::TextureStorage::create(uint32_t sizeX, uint32_t sizeY, GLenum format)
 {
     if (sizeX == 0 || sizeY == 0)
     {
@@ -235,16 +235,43 @@ bool ENG_API Eng::TextureStorage::create(uint32_t sizeX, uint32_t sizeY)
         return false;
     }
 
-    init();
+    // Release, if already used:
+    if (this->isInitialized())
+        this->free();
+
+    // Init buffer:
+    if (!this->isInitialized())
+        this->init();
+
+    GLsizei const width = sizeX;
+    GLsizei const height = sizeY;
 
     const GLuint oglId = reserved->oglId;
     glBindTexture(GL_TEXTURE_2D, oglId);
-    glTexStorage2D(GL_TEXTURE_2D, 1, GL_R32UI, sizeX, sizeY);
+    glTexStorage2D(GL_TEXTURE_2D, 1, format, width, height);
+    glBindImageTexture(0, oglId, 0, GL_FALSE, 0, GL_READ_WRITE, GL_R32UI);
 
     // done
     setSizeX(sizeX);
     setSizeY(sizeY);
     return true;
+}
+
+void Eng::TextureStorage::reset()
+{
+
+    GLsizei const width = getSizeX();
+    GLsizei const height = getSizeY();
+
+    // Popolazione dei dati della texture nella memoria della CPU
+    GLuint* textureData = new GLuint[width * height];
+    for (int i = 0; i < width * height; ++i) {
+        textureData[i] = 0; // Imposta il valore del pixel
+    }    
+
+    glBindTexture(GL_TEXTURE_2D, reserved->oglId);
+    glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RED_INTEGER,
+        GL_UNSIGNED_INT, textureData);
 }
 
 

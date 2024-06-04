@@ -1,5 +1,3 @@
-
-
 // Main includes:
 #include "engine_pipeline_OIT.h"
 #include "engine.h"
@@ -11,6 +9,7 @@
 #include <GLFW/glfw3.h>
 
 #include "engine_acbo.h"
+#include "engine_pbo.h"
 #include "engine_ssbo.h"
 #include "engine_texture_storage.h"
 
@@ -60,6 +59,7 @@ void main()
  */
 static const std::string pipeline_fs = R"(
 
+
 // Uniform:
 #ifdef ENG_BINDLESS_SUPPORTED
    layout (bindless_sampler) uniform sampler2D texture0; // Albedo
@@ -73,7 +73,7 @@ static const std::string pipeline_fs = R"(
    layout (binding = 3) uniform sampler2D texture3; // Metalness
 #endif
 
-layout(binding=4) uniform sampler2D headPointers;
+
 
 // Uniform (material):
 uniform vec3 mtlEmission;
@@ -87,6 +87,20 @@ uniform uint totNrOfLights;
 uniform vec3 lightColor;
 uniform vec3 lightAmbient;
 uniform vec3 lightPosition;
+
+struct NodeType {
+  vec4 color;
+  float depth;
+  uint next;
+};
+
+layout(binding=0, r32ui) uniform uimage2D headPointers;
+layout( binding = 0, offset = 0) uniform atomic_uint nextNodeCounter;
+layout( binding = 0, std430 ) buffer linkedLists {
+  NodeType nodes[];
+};
+
+uniform uint maxNodes;
 
 // Varying:
 in vec4 fragPosition;
@@ -145,198 +159,234 @@ vec3 compute_color()
  
 void main()
 {
-   outFragment = vec4(compute_color(), 1);      
+    // Get the index of the next empty slot in the buffer
+  uint nodeIdx = atomicCounterIncrement(nextNodeCounter);
+
+  if( nodeIdx < maxNodes ) {
+
+    uint prevHead = imageAtomicExchange(headPointers, ivec2(gl_FragCoord.xy), nodeIdx);
+
+    nodes[nodeIdx].color = vec4(compute_color(), 1);
+    nodes[nodeIdx].depth = gl_FragCoord.z;
+    nodes[nodeIdx].next = prevHead;
+  }
+
+   outFragment = nodes[nodeIdx].color;      
 })";
 
 struct Eng::PipelineOIT::Reserved
-{  
-   Eng::Shader vs;
-   Eng::Shader fs;
-   Eng::Program program;
-   
-   Eng::Acbo acbo;
-   Eng::TextureStorage textureStorage;
-   Eng::Ssbo ssbo;
-   
-   bool wireframe;
+{
+    Eng::Shader vs;
+    Eng::Shader fs;
+    Eng::Program program;
 
-   /**
-    * Constructor. 
-    */
-   Reserved() : wireframe{ false }
-   {}
+    Eng::Acbo acbo;
+    Eng::TextureStorage textureStorage;
+    Eng::Ssbo ssbo;
+    //Eng::Pbo pbo;
+
+    GLuint clearBufferId;
+
+    GLuint maxNodes = 20 * Eng::Base::dfltWindowSizeX * Eng::Base::dfltWindowSizeY;
+    GLint nodeSize = 5 * sizeof(GLfloat) + sizeof(GLuint); // The size of a linked list node
+
+
+    bool wireframe;
+
+    /**
+     * Constructor. 
+     */
+    Reserved() : wireframe{false}
+    {
+    }
 };
 
 ENG_API Eng::PipelineOIT::PipelineOIT() : reserved(std::make_unique<Eng::PipelineOIT::Reserved>())
 {
-   ENG_LOG_DETAIL("[+]");
-   this->setProgram(reserved->program);
+    ENG_LOG_DETAIL("[+]");
+    this->setProgram(reserved->program);
 }
 
-Eng::PipelineOIT::PipelineOIT(const std::string& name) : Eng::Pipeline(name), reserved(std::make_unique<Eng::PipelineOIT::Reserved>())
+Eng::PipelineOIT::PipelineOIT(const std::string& name) : Eng::Pipeline(name),
+                                                         reserved(std::make_unique<Eng::PipelineOIT::Reserved>())
 {
-   ENG_LOG_DETAIL("[+]");
-   this->setProgram(reserved->program);
+    ENG_LOG_DETAIL("[+]");
+    this->setProgram(reserved->program);
 }
 
 
-ENG_API Eng::PipelineOIT::PipelineOIT(PipelineOIT&& other) : Eng::Pipeline(std::move(other)), reserved(std::move(other.reserved))
+ENG_API Eng::PipelineOIT::PipelineOIT(PipelineOIT&& other) : Eng::Pipeline(std::move(other)),
+                                                             reserved(std::move(other.reserved))
 {
-   ENG_LOG_DETAIL("[M]");
+    ENG_LOG_DETAIL("[M]");
 }
 
 ENG_API Eng::PipelineOIT::~PipelineOIT()
 {
-   ENG_LOG_DETAIL("[-]");
-   if (this->isInitialized())
-      free();
+    ENG_LOG_DETAIL("[-]");
+    if (this->isInitialized())
+        free();
 }
 
 bool Eng::PipelineOIT::init()
 {
-   // Already initialized?
-   if (this->Eng::Managed::init() == false)
-      return false;
-   if (!this->isDirty())
-      return false;
+    // Already initialized?
+    if (this->Eng::Managed::init() == false)
+        return false;
+    if (!this->isDirty())
+        return false;
 
-   // Build:
-   reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
-   reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);   
-   if (reserved->program.build({ reserved->vs, reserved->fs }) == false)
-   {
-      ENG_LOG_ERROR("Unable to build default program");
-      return false;
-   }
-   this->setProgram(reserved->program);
+    // Build:
+    reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
+    reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);
+    if (reserved->program.build({reserved->vs, reserved->fs}) == false)
+    {
+        ENG_LOG_ERROR("Unable to build default program");
+        return false;
+    }
+    this->setProgram(reserved->program);
 
-   // init ACBO:
-   if (reserved->acbo.init() == false)
-   {
-      ENG_LOG_ERROR("Unable to init ACBO");
-      return false;
-   }
+    // init ACBO:
+    if (reserved->acbo.init() == false)
+    {
+        ENG_LOG_ERROR("Unable to init ACBO");
+        return false;
+    }
 
-   int width = Eng::Base::dfltWindowSizeX;
-   int height = Eng::Base::dfltWindowSizeY;
+    int width = Eng::Base::dfltWindowSizeX;
+    int height = Eng::Base::dfltWindowSizeY;
 
-   reserved->textureStorage.create(width, height);
-   
-   // Done: 
-   this->setDirty(false);
-   return true;
+    std::vector<GLuint> headPtrClearBuf(width*height, 0xffffffff);
+    
+    //reserved->pbo.create(headPtrClearBuf);
+    reserved->acbo.create();
+    reserved->ssbo.create(reserved->maxNodes  * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
+    reserved->textureStorage.create(width, height, GL_R32UI);
+    
+
+    // Done: 
+    this->setDirty(false);
+    return true;
 }
 
-void Eng::PipelineOIT::ClearBuffers()
+void Eng::PipelineOIT::clearBuffers()
 {
+    reserved->acbo.reset();
+    //reserved->pbo.reset();
+    reserved->textureStorage.reset();
 }
 
 
 bool Eng::PipelineOIT::free()
 {
-   if (this->Eng::Managed::free() == false)
-      return false;
+    if (this->Eng::Managed::free() == false)
+        return false;
 
-   // Done:   
-   return true;
+    // Done:   
+    return true;
 }
 
 bool Eng::PipelineOIT::isWireframe() const
 {
-   return reserved->wireframe;
+    return reserved->wireframe;
 }
 
 ENG_API void Eng::PipelineOIT::setWireframe(bool flag)
 {
-   reserved->wireframe = flag;
+    reserved->wireframe = flag;
 }
-
-
 
 
 bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, const Eng::List& list)
 {
-   // Safety net:
-   if (list == Eng::List::empty)
-   {
-      ENG_LOG_ERROR("Invalid params");
-      return false;
-   }
+    // Safety net:
+    if (list == Eng::List::empty)
+    {
+        ENG_LOG_ERROR("Invalid params");
+        return false;
+    }
 
-   // Lazy-loading:
-   if (this->isDirty())
-      if (!this->init())
-      {
-         ENG_LOG_ERROR("Unable to render (initialization failed)");
-         return false;
-      }
+    // Lazy-loading:
+    if (this->isDirty())
+        if (!this->init())
+        {
+            ENG_LOG_ERROR("Unable to render (initialization failed)");
+            return false;
+        }
 
-   glDepthMask(GL_FALSE);
+    glDepthMask(GL_FALSE);
 
-   // Just to update the cache:
-   this->Eng::Pipeline::render(glm::mat4(1.0f), glm::mat4(1.0f), list);
+    // Just to update the cache:
+    this->Eng::Pipeline::render(glm::mat4(1.0f), glm::mat4(1.0f), list);
 
-   // Apply program:
-   Eng::Program &program = getProgram();
-   if (program == Eng::Program::empty)
-   {
-      ENG_LOG_ERROR("Invalid program");
-      return false;
-   }   
-   program.render();   
-   program.setMat4("projectionMat", proj);   
-   
-   // Wireframe is on?
-   if (isWireframe())
-      glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);      
+    // Apply program:
+    Eng::Program& program = getProgram();
+    if (program == Eng::Program::empty)
+    {
+        ENG_LOG_ERROR("Invalid program");
+        return false;
+    }
+    program.render();
+    program.setMat4("projectionMat", proj);
 
-   // Multipass rendering:
-   uint32_t totNrOfLights = list.getNrOfLights();
-   program.setUInt("totNrOfLights", totNrOfLights);
+    // Wireframe is on?
+    if (isWireframe())
+        glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
-   for (uint32_t l = 0; l < totNrOfLights; l++)
-   {
-      // Enable addictive blending from light 1 on:
-      if (l == 1)      
-      {
-         glEnable(GL_BLEND);
-         glBlendFunc(GL_ONE, GL_ONE);         
-      }
-      
-      // Render one light at time:
-      const Eng::List::RenderableElem &lightRe = list.getRenderableElem(l);     
-      const Eng::Light &light = dynamic_cast<const Eng::Light &>(lightRe.reference.get());
+    // Multipass rendering:
+    uint32_t totNrOfLights = list.getNrOfLights();
+    program.setUInt("totNrOfLights", totNrOfLights);
 
-      // Re-enable this pipeline's program:
-      program.render();   
-      glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
-      lightRe.reference.get().render(0, &lightFinalMatrix);
+    program.setUInt("maxNodes", reserved->maxNodes);
 
-      lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera); // To convert from eye coords into light space    
-      program.setMat4("lightMatrix", lightFinalMatrix);
-      
-      // Render meshes:
-      list.render(camera, proj, Eng::List::Pass::transparents);
+    for (uint32_t l = 0; l < totNrOfLights; l++)
+    {
+        clearBuffers();
+        //reserved->pbo.render();
+        reserved->textureStorage.render(4);
+        reserved->acbo.render(0);
+        reserved->ssbo.render(0);
+        
+        
+        // Enable addictive blending from light 1 on:
+        if (l == 1)
+        {
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE, GL_ONE);
+        }
 
-   }
+        // Render one light at time:
+        const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
+        const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
 
-   // Disable blending, in case we used it:
-   if (list.getNrOfLights() > 1)         
-      glDisable(GL_BLEND);            
+        // Re-enable this pipeline's program:
+        program.render();
+        glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
+        lightRe.reference.get().render(0, &lightFinalMatrix);
 
-   // Wireframe is on?
-   if (isWireframe())
-      glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
+        // To convert from eye coords into light space    
+        program.setMat4("lightMatrix", lightFinalMatrix);
 
-   // Done:   
-   return true;
+        // Render meshes:
+
+        list.render(camera, proj, Eng::List::Pass::transparents);
+    }
+
+    // Disable blending, in case we used it:
+    if (list.getNrOfLights() > 1)
+        glDisable(GL_BLEND);
+
+    // Wireframe is on?
+    if (isWireframe())
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    // Done:   
+    return true;
 }
 
 
 bool Eng::PipelineOIT::render(const Eng::Camera& camera, const Eng::List& list)
 {
-   return this->render(glm::inverse(camera.getWorldMatrix()), camera.getProjMatrix(), list);
+    return this->render(glm::inverse(camera.getWorldMatrix()), camera.getProjMatrix(), list);
 }
-
-
-

@@ -5,8 +5,8 @@
    Using GLEW v2.1.0
 OpenGL properties:
    Vendor  . . . :  NVIDIA Corporation
-   Driver  . . . :  NVIDIA GeForce RTX 3070 Laptop GPU/PCIe/SSE2
-   Version . . . :  4.6.0 NVIDIA 551.61 [4.6]
+   Driver  . . . :  NVIDIA GeForce RTX 3070 Ti Laptop GPU/PCIe/SSE2
+   Version . . . :  4.6.0 NVIDIA 527.99 [4.6]
    No error  . . :  disabled
    GLSL  . . . . :  4.60 NVIDIA
    Extensions  . :  402
@@ -193,14 +193,18 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
+[*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
 [?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
 [D] [Eng::Texture::load:456] Type: 2D, Level: 1/1, IntFormat: 0x8058, x: 1, y: 1
 [?] [Eng::Program::getParamLocation] Variable 'texture1' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture3' not found
+[*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 22 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Base::free:346] Releasing context...
 [D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
-[D] [Eng::Managed::forceRelease:187] 40 managed object(s) released out of 40
+[D] [Eng::Managed::forceRelease:187] 42 managed object(s) released out of 42
    Context deinitialized
 [D] [Eng::Ssbo::~Ssbo:95] [-]
 [D] [Eng::Ssbo::~Ssbo:95] [-]

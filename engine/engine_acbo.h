@@ -20,11 +20,11 @@ namespace Eng
         uint32_t getOglHandle() const;
 
         // data:
-        bool create(uint32_t size, uint32_t format, uint32_t usage);
+        bool create(uint32_t size, void* data, uint32_t usage);
         bool create();
 
         // Rendering methods:
-        static void reset();
+        void reset();
         bool render(uint32_t value = 0, void* data = nullptr) const;
 
         // Managed:

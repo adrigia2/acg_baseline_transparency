@@ -25,7 +25,7 @@ namespace Eng
 
         // Managed:
         bool init() override;
-        void ClearBuffers();
+        void clearBuffers();
         bool free() override;
 
 

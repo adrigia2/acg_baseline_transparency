@@ -23,7 +23,8 @@ namespace Eng
         uint64_t getOglBindlessHandle() const;
 
 
-        bool create(uint32_t sizeX, uint32_t sizeY);
+        bool create(uint32_t sizeX, uint32_t sizeY, uint32_t format);
+        void reset();
         bool render(uint32_t value = 0, void* data = nullptr) const;
 
         // Managed:
