@@ -222,11 +222,17 @@ void main() {
 
     float value = (pixelCoord.x+pixelCoord.y)/float(size.x+size.y);
     vec4 color = vec4(value, 1.0-value, 0.0, 1.0);
-    //vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
     }
 
+    // read the actual color from the texture
+    //vec4 result = imageLoad(resultImage, pixelCoord);
+    
+    // the new color is the result sum of the two colors
+    //var result = color; // + result;
+    //result.a=previousPassColor.a;
+    
     imageStore(resultImage, pixelCoord, color);
 }
 
@@ -335,7 +341,7 @@ bool Eng::PipelineOIT::init()
 
     reserved->acbo.create();
     reserved->ssbo.create(reserved->maxNodes * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
-    
+
     reserved->textureStorage.create(width, height, GL_R32UI);
     reserved->textureStorage.reset();
 
@@ -414,62 +420,53 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // Multipass rendering:
-    //uint32_t totNrOfLights = list.getNrOfLights();
-    
-    uint32_t totNrOfLights = 1;
+    uint32_t totNrOfLights = list.getNrOfLights();
 
-    //for (uint32_t l = 0; l < totNrOfLights; l++)
-    //{
-    program.render();
-    program.setMat4("projectionMat", proj);
+    //uint32_t totNrOfLights = 1;
 
-    program.setUInt("totNrOfLights", totNrOfLights);
-    program.setUInt("maxNodes", reserved->maxNodes);
+    for (uint32_t l = 0; l < totNrOfLights; l++)
+    {
+        program.render();
+        program.setMat4("projectionMat", proj);
 
-    clearBuffers();
-    reserved->textureStorage.render(0);
-    reserved->acbo.render(0);
-    reserved->ssbo.render(0);
+        program.setUInt("totNrOfLights", totNrOfLights);
+        program.setUInt("maxNodes", reserved->maxNodes);
 
-    // Enable addictive blending from light 1 on:
-    //if (l == 1)
-    //{
-    //    glEnable(GL_BLEND);
-    //    glBlendFunc(GL_ONE, GL_ONE);
-    //}
+        clearBuffers();
 
-    // Render one light at time:
-    const Eng::List::RenderableElem& lightRe = list.getRenderableElem(0);
-    //const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
-
-    const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
-
-    // Re-enable this pipeline's program:
-    program.render();
-    glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
-    lightRe.reference.get().render(0, &lightFinalMatrix);
-
-    lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
-    // To convert from eye coords into light space    
-    program.setMat4("lightMatrix", lightFinalMatrix);
-
-    // Render meshes:
-    list.render(camera, proj, Eng::List::Pass::transparents);
-
-    reserved->programCS.render();
-
-    reserved->renderTexture.bindImage(1);
-    reserved->textureStorage.render(0);
-    reserved->ssbo.render(0);
-
-    reserved->programCS.compute(reserved->renderTexture.getSizeX() / 32, reserved->renderTexture.getSizeY() / 32);
-    reserved->programCS.wait();
-    //}
+        reserved->textureStorage.render(0);
+        reserved->acbo.render(0);
+        reserved->ssbo.render(0);
 
 
-    // Disable blending, in case we used it:
-    //if (list.getNrOfLights() > 1)
-    //    glDisable(GL_BLEND);
+        // Render one light at time:
+        //const Eng::List::RenderableElem& lightRe = list.getRenderableElem(0);
+        const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
+
+        const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
+
+        // Re-enable this pipeline's program:
+        program.render();
+        glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
+        lightRe.reference.get().render(0, &lightFinalMatrix);
+
+        lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
+        // To convert from eye coords into light space    
+        program.setMat4("lightMatrix", lightFinalMatrix);
+
+        // Render meshes:
+        list.render(camera, proj, Eng::List::Pass::transparents);
+
+        reserved->programCS.render();
+
+        reserved->renderTexture.bindImage(1);
+        reserved->textureStorage.render(0);
+        reserved->ssbo.render(0);
+
+        reserved->programCS.compute(reserved->renderTexture.getSizeX() / 32, reserved->renderTexture.getSizeY() / 32);
+        reserved->programCS.wait();
+    }
+
 
     // Wireframe is on?
     if (isWireframe())

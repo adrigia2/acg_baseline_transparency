@@ -205,10 +205,4 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 22 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
-[D] [Eng::Base::free:346] Releasing context...
-[D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
-[D] [Eng::Managed::forceRelease:187] 50 managed object(s) released out of 50
-   Context deinitialized
 [D] [Eng::Ssbo::~Ssbo:95] [-]
-[D] [Eng::Ssbo::~Ssbo:95] [-]
-[D] [Eng::Log::free:107] [-] Logging completed
