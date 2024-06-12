@@ -44,13 +44,14 @@ struct Eng::Texture::Reserved
    
    GLuint oglId;                    ///< OpenGL texture ID   
    GLuint64 oglBindlessHandle;      ///< GL_ARB_bindless_texture special handle
+   GLuint oglInternalFormat;        ///< OpenGL internal format enum
 
 
    /**
     * Constructor. 
     */
    Reserved() : bitmap{ Eng::Bitmap::empty }, format{ Eng::Texture::Format::none }, size{ 0, 0, 1 },
-                oglId{ 0 }, oglBindlessHandle{ 0 }
+                oglId{ 0 }, oglBindlessHandle{ 0 }, oglInternalFormat{ 0 }
    {}
 };
 
@@ -480,6 +481,7 @@ bool ENG_API Eng::Texture::load(const Eng::Bitmap &bitmap)
    // Done:   
    this->setBitmap(bitmap);
    this->setFormat(_format);
+   reserved->oglInternalFormat = intFormat;
    this->setSizeX(bitmap.getSizeX(0));
    this->setSizeY(bitmap.getSizeY(0));
    return true;
@@ -568,9 +570,23 @@ bool ENG_API Eng::Texture::create(uint32_t sizeX, uint32_t sizeY, Format format)
    	
 	// Done:
    this->setFormat(format);
+   reserved->oglInternalFormat = intFormat;
    this->setSizeX(sizeX);
    this->setSizeY(sizeY);
 	return true;
+}
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/**
+ * Binds image for imagestore operations.
+ * @param location location to bind the texture on 
+ * @return TF
+ */
+bool ENG_API Eng::Texture::bindImage(uint32_t location)
+{     
+   glBindImageTexture(location, reserved->oglId, 0, GL_FALSE, 0, GL_WRITE_ONLY, reserved->oglInternalFormat);      
+   return true;
 }
 
 

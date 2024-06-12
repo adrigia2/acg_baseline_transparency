@@ -263,15 +263,15 @@ void Eng::TextureStorage::reset()
     GLsizei const width = getSizeX();
     GLsizei const height = getSizeY();
 
-    // Popolazione dei dati della texture nella memoria della CPU
-    GLuint* textureData = new GLuint[width * height];
-    for (int i = 0; i < width * height; ++i) {
-        textureData[i] = 0; // Imposta il valore del pixel
-    }    
+    // Valore di inizializzazione (0xffffffff)
+    GLuint initValue = 0xffffffff;
+
+    // Crea e inizializza i dati della texture
+    std::vector<GLuint> initialData(width * height, initValue);
 
     glBindTexture(GL_TEXTURE_2D, reserved->oglId);
     glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, width, height, GL_RED_INTEGER,
-        GL_UNSIGNED_INT, textureData);
+        GL_UNSIGNED_INT, initialData.data());
 }
 
 
@@ -287,7 +287,7 @@ bool ENG_API Eng::TextureStorage::render(uint32_t value, void* data) const
     Eng::Program& program = Eng::Program::getCached();
 
     glBindTextures(value, 1, &reserved->oglId);
-    glBindImageTexture(0, reserved->oglId, 0, GL_FALSE, 0, GL_READ_WRITE, GL_R32UI);
+    glBindImageTexture(value, reserved->oglId, 0, GL_FALSE, 0, GL_READ_WRITE, GL_R32UI);
 
     // Done:
     return true;

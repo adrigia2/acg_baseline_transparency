@@ -16,6 +16,9 @@ namespace Eng
         void setWireframe(bool flag);
         bool isWireframe() const;
 
+        const Eng::Texture &getRenderTexture() const;
+
+
         // rendering methods:
         bool render(const Eng::Camera& camera, const Eng::List& list) override;
         bool render(const glm::mat4& camera, const glm::mat4& proj, const Eng::List& list) override;

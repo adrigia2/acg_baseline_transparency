@@ -38,7 +38,6 @@
    // Pipelines:
    Eng::PipelineDefault dfltPipe;
    Eng::PipelineOIT oitPipe;
-
    Eng::PipelineFullscreen2D full2dPipe;
 
    // Flags:
@@ -207,14 +206,8 @@ int main(int argc, char *argv[])
       // Main rendering:
       eng.clear();      
       //dfltPipe.render(camera, list);
-      oitPipe.render(camera, list);
-
-         if (showShadowMap)
-         {            
-            eng.clear();      
-            
-            //full2dPipe.render(dfltPipe.getShadowMappingPipeline().getShadowMap(), list);
-         }
+         oitPipe.render(camera, list);
+         full2dPipe.render(oitPipe.getRenderTexture(), list);
       eng.swap();    
 
       auto stop = timer.now();

@@ -398,6 +398,7 @@ bool ENG_API Eng::Material::render(uint32_t value, void *data) const
    prog.setVec3("mtlEmission", reserved->emission);
    prog.setVec3("mtlAlbedo", reserved->albedo);
    prog.setFloat("mtlRoughness", reserved->roughness);
+   prog.setFloat("mtlOpacity", reserved->opacity);
     
    // Pass textures:
    for (uint32_t c = 0; c < Eng::Material::maxNrOfTextures; c++)

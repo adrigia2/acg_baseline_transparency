@@ -89,6 +89,7 @@ public: //
 
    // Rendering methods:
    bool render(uint32_t value = 0, void *data = nullptr) const;
+   bool bindImage(uint32_t location = 0);
 
    // Managed:
    bool init() override;

@@ -94,7 +94,7 @@ struct NodeType {
   uint next;
 };
 
-layout(binding=0, r32ui) uniform uimage2D headPointers;
+layout( binding = 0, r32ui) uniform uimage2D headPointers;
 layout( binding = 0, offset = 0) uniform atomic_uint nextNodeCounter;
 layout( binding = 0, std430 ) buffer linkedLists {
   NodeType nodes[];
@@ -166,19 +166,69 @@ void main()
 
     uint prevHead = imageAtomicExchange(headPointers, ivec2(gl_FragCoord.xy), nodeIdx);
 
-    nodes[nodeIdx].color = vec4(compute_color(), 1);
+    nodes[nodeIdx].color = vec4(compute_color(), mtlOpacity);
     nodes[nodeIdx].depth = gl_FragCoord.z;
     nodes[nodeIdx].next = prevHead;
   }
 
-   outFragment = nodes[nodeIdx].color;      
+   //outFragment = nodes[nodeIdx].color;      
 })";
 
 static const std::string pipeline_cs = R"(
 
+#define MAX_FRAGMENTS 75
+
+layout(local_size_x = 32, local_size_y = 32) in;
+
+struct NodeType {
+  vec4 color;
+  float depth;
+  uint next;
+};
+
+layout(binding = 1, rgba8) uniform image2D resultImage;
+layout(binding = 0, std430) buffer linkedLists {
+  NodeType nodes[];
+};
+layout(binding = 0, r32ui) uniform uimage2D headPointers;
 
 
+void main() {
 
+    ivec2 pixelCoord = ivec2(gl_GlobalInvocationID.xy);
+    ivec2 size = imageSize(resultImage);
+
+    NodeType frags[MAX_FRAGMENTS];
+    int count = 0;
+
+    uint n = imageLoad(headPointers, pixelCoord).r;
+
+    while (n != 0xffffffff && count < MAX_FRAGMENTS) {
+        frags[count] = nodes[n];
+        n = frags[count].next;
+        count++;
+    }
+
+    for( uint i = 1; i < count; i++ )
+  {
+    NodeType toInsert = frags[i];
+    uint j = i;
+    while( j > 0 && toInsert.depth > frags[j-1].depth ) {
+      frags[j] = frags[j-1];
+      j--;
+    }
+    frags[j] = toInsert;
+  }
+
+    float value = (pixelCoord.x+pixelCoord.y)/float(size.x+size.y);
+    vec4 color = vec4(value, 1.0-value, 0.0, 1.0);
+    //vec4 color = vec4(1.0, 1.0, 1.0, 1.0);
+    for (int i = 0; i < count; i++) {
+        color = mix(color, frags[i].color, frags[i].color.a);
+    }
+
+    imageStore(resultImage, pixelCoord, color);
+}
 
 
 )";
@@ -188,16 +238,16 @@ struct Eng::PipelineOIT::Reserved
     Eng::Shader vs;
     Eng::Shader fs;
     Eng::Shader cs;
-    
+
     Eng::Program program;
     Eng::Program programCS;
-    
-    //Eng::Fbo fbo;
+
     Eng::Texture renderTexture;
 
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
     Eng::Ssbo ssbo;
+
     //Eng::Pbo pbo;
 
     GLuint clearBufferId;
@@ -254,14 +304,17 @@ bool Eng::PipelineOIT::init()
     // Build:
     reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
     reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);
-    //reserved->cs.load(Eng::Shader::Type::compute, pipeline_cs);
-    
-    //if(reserved->programCS.build({reserved->cs}) == false)
-    //{
-    //    ENG_LOG_ERROR("Unable to build compute program");
-    //    return false;
-    //}
-    
+
+    reserved->cs.load(Eng::Shader::Type::compute, pipeline_cs);
+
+
+    if (reserved->programCS.build({reserved->cs}) == false)
+    {
+        ENG_LOG_ERROR("Unable to build compute program");
+        return false;
+    }
+
+
     if (reserved->program.build({reserved->vs, reserved->fs}) == false)
     {
         ENG_LOG_ERROR("Unable to build default program");
@@ -269,8 +322,7 @@ bool Eng::PipelineOIT::init()
     }
     this->setProgram(reserved->program);
 
-    
-    
+
     // init ACBO:
     if (reserved->acbo.init() == false)
     {
@@ -281,23 +333,15 @@ bool Eng::PipelineOIT::init()
     int width = Eng::Base::dfltWindowSizeX;
     int height = Eng::Base::dfltWindowSizeY;
 
-    std::vector<GLuint> headPtrClearBuf(width*height, 0xffffffff);
-
-    //reserved->pbo.create(headPtrClearBuf);
     reserved->acbo.create();
-    reserved->ssbo.create(reserved->maxNodes  * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
-    reserved->textureStorage.create(width, height, GL_R32UI);
-
-    reserved->renderTexture.create(width,height,Texture::Format::none);
-
-    //reserved->fbo.attachTexture(reserved->renderTexture);
-    //if (reserved->fbo.validate() == false)
-    //{
-    //    ENG_LOG_ERROR("Unable to init FBO");
-    //    return false;
-    //}
+    reserved->ssbo.create(reserved->maxNodes * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
     
-    // Done: 
+    reserved->textureStorage.create(width, height, GL_R32UI);
+    reserved->textureStorage.reset();
+
+    reserved->renderTexture.create(width, height, Texture::Format::r8g8b8a8);
+
+
     this->setDirty(false);
     return true;
 }
@@ -305,7 +349,6 @@ bool Eng::PipelineOIT::init()
 void Eng::PipelineOIT::clearBuffers()
 {
     reserved->acbo.reset();
-    //reserved->pbo.reset();
     reserved->textureStorage.reset();
 }
 
@@ -322,6 +365,11 @@ bool Eng::PipelineOIT::free()
 bool Eng::PipelineOIT::isWireframe() const
 {
     return reserved->wireframe;
+}
+
+const Eng::Texture& Eng::PipelineOIT::getRenderTexture() const
+{
+    return reserved->renderTexture;
 }
 
 ENG_API void Eng::PipelineOIT::setWireframe(bool flag)
@@ -359,61 +407,69 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         ENG_LOG_ERROR("Invalid program");
         return false;
     }
-    program.render();
-    program.setMat4("projectionMat", proj);
+
 
     // Wireframe is on?
     if (isWireframe())
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // Multipass rendering:
-    uint32_t totNrOfLights = list.getNrOfLights();
-    program.setUInt("totNrOfLights", totNrOfLights);
+    //uint32_t totNrOfLights = list.getNrOfLights();
+    
+    uint32_t totNrOfLights = 1;
 
+    //for (uint32_t l = 0; l < totNrOfLights; l++)
+    //{
+    program.render();
+    program.setMat4("projectionMat", proj);
+
+    program.setUInt("totNrOfLights", totNrOfLights);
     program.setUInt("maxNodes", reserved->maxNodes);
 
-    //reserved->fbo.render();
-    
-    for (uint32_t l = 0; l < totNrOfLights; l++)
-    {
-        clearBuffers();
-        //reserved->pbo.render();
-        reserved->textureStorage.render(4);
-        reserved->acbo.render(0);
-        reserved->ssbo.render(0);
-        
-        
-        // Enable addictive blending from light 1 on:
-        if (l == 1)
-        {
-            glEnable(GL_BLEND);
-            glBlendFunc(GL_ONE, GL_ONE);
-        }
+    clearBuffers();
+    reserved->textureStorage.render(0);
+    reserved->acbo.render(0);
+    reserved->ssbo.render(0);
 
-        // Render one light at time:
-        const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
-        const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
+    // Enable addictive blending from light 1 on:
+    //if (l == 1)
+    //{
+    //    glEnable(GL_BLEND);
+    //    glBlendFunc(GL_ONE, GL_ONE);
+    //}
 
-        // Re-enable this pipeline's program:
-        program.render();
-        glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
-        lightRe.reference.get().render(0, &lightFinalMatrix);
+    // Render one light at time:
+    const Eng::List::RenderableElem& lightRe = list.getRenderableElem(0);
+    //const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
 
-        lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
-        // To convert from eye coords into light space    
-        program.setMat4("lightMatrix", lightFinalMatrix);
+    const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
 
-        // Render meshes:
+    // Re-enable this pipeline's program:
+    program.render();
+    glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
+    lightRe.reference.get().render(0, &lightFinalMatrix);
 
-        list.render(camera, proj, Eng::List::Pass::transparents);
-    }
+    lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
+    // To convert from eye coords into light space    
+    program.setMat4("lightMatrix", lightFinalMatrix);
 
-    
-    //Eng::Fbo::reset(Eng::Base::dfltWindowSizeX, Eng::Base::dfltWindowSizeY);   
-    
+    // Render meshes:
+    list.render(camera, proj, Eng::List::Pass::transparents);
+
+    reserved->programCS.render();
+
+    reserved->renderTexture.bindImage(1);
+    reserved->textureStorage.render(0);
+    reserved->ssbo.render(0);
+
+    reserved->programCS.compute(reserved->renderTexture.getSizeX() / 32, reserved->renderTexture.getSizeY() / 32);
+    reserved->programCS.wait();
+    //}
+
+
     // Disable blending, in case we used it:
-    if (list.getNrOfLights() > 1)
-        glDisable(GL_BLEND);
+    //if (list.getNrOfLights() > 1)
+    //    glDisable(GL_BLEND);
 
     // Wireframe is on?
     if (isWireframe())
