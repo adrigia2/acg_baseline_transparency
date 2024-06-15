@@ -205,9 +205,11 @@ int main(int argc, char *argv[])
       
       // Main rendering:
       eng.clear();      
-      //dfltPipe.render(camera, list);
+         dfltPipe.render(camera, list);
          oitPipe.render(camera, list);
+         eng.clear();    
          full2dPipe.render(oitPipe.getRenderTexture(), list);
+
       eng.swap();    
 
       auto stop = timer.now();

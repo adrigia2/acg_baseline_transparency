@@ -387,10 +387,21 @@ void ENG_API Eng::Fbo::reset(uint32_t viewportSizeX, uint32_t viewportSizeY)
  * @param viewportSizeY height of the viewport
  * @return TF
  */
-bool ENG_API Eng::Fbo::blit(uint32_t viewportSizeX, uint32_t viewportSizeY) const
-{  
-   glBindFramebuffer(GL_READ_FRAMEBUFFER, reserved->oglId);
-   glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);   
+bool ENG_API Eng::Fbo::blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool invertOrder) const
+{
+
+   if(invertOrder)
+   {
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, reserved->oglId);
+   }
+   else
+   {
+      glBindFramebuffer(GL_READ_FRAMEBUFFER, reserved->oglId);
+      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+   }
+      
+      
    glBlitFramebuffer(0, 0, getSizeX(), getSizeY(),
                      0, 0, viewportSizeX, viewportSizeY,
                      GL_COLOR_BUFFER_BIT, GL_NEAREST);

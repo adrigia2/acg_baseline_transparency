@@ -585,7 +585,7 @@ bool ENG_API Eng::Texture::create(uint32_t sizeX, uint32_t sizeY, Format format)
  */
 bool ENG_API Eng::Texture::bindImage(uint32_t location)
 {     
-   glBindImageTexture(location, reserved->oglId, 0, GL_FALSE, 0, GL_WRITE_ONLY, reserved->oglInternalFormat);      
+   glBindImageTexture(location, reserved->oglId, 0, GL_FALSE, 0, GL_READ_WRITE, reserved->oglInternalFormat);      
    return true;
 }
 

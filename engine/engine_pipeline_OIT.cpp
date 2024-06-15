@@ -191,6 +191,8 @@ layout(binding = 0, std430) buffer linkedLists {
   NodeType nodes[];
 };
 layout(binding = 0, r32ui) uniform uimage2D headPointers;
+uniform uint totNrOfLights;
+uniform uint currentLight;
 
 
 void main() {
@@ -220,19 +222,13 @@ void main() {
     frags[j] = toInsert;
   }
 
-    float value = (pixelCoord.x+pixelCoord.y)/float(size.x+size.y);
-    vec4 color = vec4(value, 1.0-value, 0.0, 1.0);
+    //set the color as the current texel color
+    vec4 color = imageLoad(resultImage, pixelCoord);
+
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
     }
 
-    // read the actual color from the texture
-    //vec4 result = imageLoad(resultImage, pixelCoord);
-    
-    // the new color is the result sum of the two colors
-    //var result = color; // + result;
-    //result.a=previousPassColor.a;
-    
     imageStore(resultImage, pixelCoord, color);
 }
 
@@ -248,7 +244,9 @@ struct Eng::PipelineOIT::Reserved
     Eng::Program program;
     Eng::Program programCS;
 
+    Eng::Fbo fbo;
     Eng::Texture renderTexture;
+    Eng::Texture background;
 
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
@@ -344,8 +342,10 @@ bool Eng::PipelineOIT::init()
 
     reserved->textureStorage.create(width, height, GL_R32UI);
     reserved->textureStorage.reset();
-
+    
     reserved->renderTexture.create(width, height, Texture::Format::r8g8b8a8);
+    reserved->fbo.attachTexture(reserved->renderTexture);
+    reserved->fbo.validate();
 
 
     this->setDirty(false);
@@ -401,6 +401,13 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
             return false;
         }
 
+
+    int width = Eng::Base::dfltWindowSizeX;
+    int height = Eng::Base::dfltWindowSizeY;
+    
+    reserved->fbo.blit(width, height,true);
+    Fbo::reset(width, height);
+    
     glDepthMask(GL_FALSE);
 
     // Just to update the cache:
@@ -462,6 +469,8 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         reserved->renderTexture.bindImage(1);
         reserved->textureStorage.render(0);
         reserved->ssbo.render(0);
+        reserved->programCS.setUInt("totNrOfLights", totNrOfLights);
+        reserved->programCS.setUInt("currentLight", l);
 
         reserved->programCS.compute(reserved->renderTexture.getSizeX() / 32, reserved->renderTexture.getSizeY() / 32);
         reserved->programCS.wait();
@@ -471,6 +480,8 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
     // Wireframe is on?
     if (isWireframe())
         glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    glDepthMask(GL_TRUE);
 
     // Done:   
     return true;

@@ -193,6 +193,9 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
+[?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
+[D] [Eng::Shader::load:254] Shader compiled
+[D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
@@ -203,6 +206,14 @@ LOD: 1, v: 17, f: 8
 [*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 22 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[?] [Eng::Program::getParamLocation] Variable 'totNrOfLights' not found
+[?] [Eng::Program::getParamLocation] Variable 'currentLight' not found
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
+[D] [Eng::Base::free:346] Releasing context...
+[D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
+[D] [Eng::Managed::forceRelease:187] 56 managed object(s) released out of 56
+   Context deinitialized
 [D] [Eng::Ssbo::~Ssbo:95] [-]
+[D] [Eng::Ssbo::~Ssbo:95] [-]
+[D] [Eng::Log::free:107] [-] Logging completed

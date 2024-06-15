@@ -150,7 +150,8 @@ void main()
    // Light only front faces:
    if (dot(N, V) > 0.0f)
    {
-      float shadow = 1.0f - shadowAmount(fragPositionLightSpace);     
+      float shadow = 1.0f - shadowAmount(fragPositionLightSpace);
+      shadow = 1;  
       
       // Diffuse term:   
       float nDotL = max(0.0f, dot(N, L));      
@@ -179,7 +180,8 @@ struct Eng::PipelineDefault::Reserved
    Eng::Shader vs;
    Eng::Shader fs;
    Eng::Program program;
-   
+
+   Texture renderTexture;
    bool wireframe;
 
    PipelineShadowMapping shadowMapping;
@@ -266,6 +268,11 @@ bool ENG_API Eng::PipelineDefault::init()
    }
    this->setProgram(reserved->program);
 
+   auto width=Eng::Base::dfltWindowSizeX;
+   auto height=Eng::Base::dfltWindowSizeY;
+   
+   reserved->renderTexture.create(width, height, Eng::Texture::Format::r8g8b8);
+   
    // Done: 
    this->setDirty(false);
    return true;
@@ -350,6 +357,7 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
    // Just to update the cache:
    this->Eng::Pipeline::render(glm::mat4(1.0f), glm::mat4(1.0f), list);
 
+   
    // Apply program:
    Eng::Program &program = getProgram();
    if (program == Eng::Program::empty)
@@ -382,7 +390,7 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
       const Eng::Light &light = dynamic_cast<const Eng::Light &>(lightRe.reference.get());
 
       // Render shadow map:
-      reserved->shadowMapping.render(glm::inverse(lightRe.matrix), light.getProjMatrix(), list);
+      //reserved->shadowMapping.render(glm::inverse(lightRe.matrix), light.getProjMatrix(), list);
 
       // Re-enable this pipeline's program:
       program.render();   
@@ -405,6 +413,10 @@ bool ENG_API Eng::PipelineDefault::render(const glm::mat4 &camera, const glm::ma
    if (isWireframe())
       glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+   
+   auto width=Eng::Base::dfltWindowSizeX;
+   auto height=Eng::Base::dfltWindowSizeY;
+   
    // Done:   
    return true;
 }
