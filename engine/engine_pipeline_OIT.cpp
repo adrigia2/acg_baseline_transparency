@@ -34,11 +34,9 @@ layout(location = 3) in vec4 a_tangent;
 uniform mat4 modelviewMat;
 uniform mat4 projectionMat;
 uniform mat3 normalMat;
-uniform mat4 lightMatrix;
 
 // Varying:
 out vec4 fragPosition;
-out vec4 fragPositionLightSpace;
 out vec3 normal;
 out vec2 uv;
 
@@ -48,7 +46,6 @@ void main()
    uv = a_uv;
 
    fragPosition = modelviewMat * vec4(a_vertex, 1.0f);
-   fragPositionLightSpace = lightMatrix * fragPosition;
    gl_Position = projectionMat * fragPosition;
 })";
 
@@ -104,7 +101,6 @@ uniform uint maxNodes;
 
 // Varying:
 in vec4 fragPosition;
-in vec4 fragPositionLightSpace;
 in vec3 normal;
 in vec2 uv;
 
@@ -235,17 +231,112 @@ void main() {
 
 )";
 
+static const std::string pipeline_vs_pass2 = R"(
+ 
+// Per-vertex data from VBOs:
+layout(location = 0) in vec3 a_vertex;
+layout(location = 1) in vec4 a_normal;
+layout(location = 2) in vec2 a_uv;
+layout(location = 3) in vec4 a_tangent;
+
+// Uniforms:
+uniform mat4 modelviewMat;
+uniform mat4 projectionMat;
+uniform mat3 normalMat;
+
+// Varying:
+out vec4 fragPosition;
+
+void main()
+{
+   fragPosition = modelviewMat * vec4(a_vertex, 1.0f);
+   gl_Position = projectionMat * fragPosition;
+}
+
+)";
+
+static const std::string pipeline_fs_pass2 = R"(
+
+#define MAX_FRAGMENTS 75
+
+in vec4 fragPosition;
+
+// Output to the framebuffer:
+out vec4 outFragment;
+
+struct NodeType {
+  vec4 color;
+  float depth;
+  uint next;
+};
+
+layout(binding = 1, rgba8) uniform image2D resultImage;
+layout(binding = 0, std430) buffer linkedLists {
+  NodeType nodes[];
+};
+layout(binding = 0, r32ui) uniform uimage2D headPointers;
+uniform uint totNrOfLights;
+uniform uint currentLight;
+
+
+void main() {
+
+    ivec2 pixelCoord = ivec2(gl_FragCoord.xy);
+    ivec2 size = imageSize(resultImage);
+
+    NodeType frags[MAX_FRAGMENTS];
+    int count = 0;
+
+    uint n = imageLoad(headPointers, pixelCoord).r;
+
+    while (n != 0xffffffff && count < MAX_FRAGMENTS) {
+        frags[count] = nodes[n];
+        n = frags[count].next;
+        count++;
+    }
+
+    for( uint i = 1; i < count; i++ )
+  {
+    NodeType toInsert = frags[i];
+    uint j = i;
+    while( j > 0 && toInsert.depth > frags[j-1].depth ) {
+      frags[j] = frags[j-1];
+      j--;
+    }
+    frags[j] = toInsert;
+  }
+
+    //set the color as the current texel color
+    vec4 color = imageLoad(resultImage, pixelCoord);
+
+    for (int i = 0; i < count; i++) {
+        color = mix(color, frags[i].color, frags[i].color.a);
+    }
+
+    outFragment = color;
+}
+
+)";
+
+
 struct Eng::PipelineOIT::Reserved
 {
     Eng::Shader vs;
     Eng::Shader fs;
+    
     Eng::Shader cs;
+    
+    Eng::Shader vsPass2;
+    Eng::Shader fsPass2;
 
     Eng::Program program;
     Eng::Program programCS;
+    Eng::Program programPass2;
 
     Eng::Fbo fbo;
     Eng::Texture renderTexture;
+    Eng::Texture depthTexture;
+    
     Eng::Texture background;
 
     Eng::Acbo acbo;
@@ -308,8 +399,9 @@ bool Eng::PipelineOIT::init()
     // Build:
     reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
     reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);
-
     reserved->cs.load(Eng::Shader::Type::compute, pipeline_cs);
+    reserved->vsPass2.load(Eng::Shader::Type::vertex, pipeline_vs_pass2);
+    reserved->fsPass2.load(Eng::Shader::Type::fragment, pipeline_fs_pass2);
 
 
     if (reserved->programCS.build({reserved->cs}) == false)
@@ -325,6 +417,12 @@ bool Eng::PipelineOIT::init()
         return false;
     }
     this->setProgram(reserved->program);
+
+    if (reserved->programPass2.build({reserved->vsPass2, reserved->fsPass2}) == false)
+    {
+        ENG_LOG_ERROR("Unable to build pass2 program");
+        return false;
+    }
 
 
     // init ACBO:
@@ -344,7 +442,11 @@ bool Eng::PipelineOIT::init()
     reserved->textureStorage.reset();
     
     reserved->renderTexture.create(width, height, Texture::Format::r8g8b8a8);
+    reserved->depthTexture.create(width, height, Texture::Format::depth);
+    
     reserved->fbo.attachTexture(reserved->renderTexture);
+    reserved->fbo.attachTexture(reserved->depthTexture);
+    
     reserved->fbo.validate();
 
 
@@ -404,8 +506,8 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
 
     int width = Eng::Base::dfltWindowSizeX;
     int height = Eng::Base::dfltWindowSizeY;
-    
-    reserved->fbo.blit(width, height,true);
+
+    reserved->fbo.blit(width, height,true); // mi copio il risultato della scena solo con gli oggetti non trasparenti
     Fbo::reset(width, height);
     
     glDepthMask(GL_FALSE);
@@ -447,33 +549,30 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
 
 
         // Render one light at time:
-        //const Eng::List::RenderableElem& lightRe = list.getRenderableElem(0);
         const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
-
-        const Eng::Light& light = dynamic_cast<const Eng::Light&>(lightRe.reference.get());
 
         // Re-enable this pipeline's program:
         program.render();
+        
         glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
         lightRe.reference.get().render(0, &lightFinalMatrix);
-
-        lightFinalMatrix = light.getProjMatrix() * glm::inverse(lightRe.matrix) * glm::inverse(camera);
-        // To convert from eye coords into light space    
-        program.setMat4("lightMatrix", lightFinalMatrix);
 
         // Render meshes:
         list.render(camera, proj, Eng::List::Pass::transparents);
 
-        reserved->programCS.render();
+        reserved->programPass2.render();
+        reserved->programPass2.setMat4("projectionMat", proj);
+
+        reserved->programPass2.setUInt("maxNodes", reserved->maxNodes);
 
         reserved->renderTexture.bindImage(1);
         reserved->textureStorage.render(0);
         reserved->ssbo.render(0);
-        reserved->programCS.setUInt("totNrOfLights", totNrOfLights);
-        reserved->programCS.setUInt("currentLight", l);
+        
+        reserved->programPass2.setUInt("totNrOfLights", totNrOfLights);
+        reserved->programPass2.setUInt("currentLight", l);
 
-        reserved->programCS.compute(reserved->renderTexture.getSizeX() / 32, reserved->renderTexture.getSizeY() / 32);
-        reserved->programCS.wait();
+        list.render(camera, proj, Eng::List::Pass::transparents);
     }
 
 

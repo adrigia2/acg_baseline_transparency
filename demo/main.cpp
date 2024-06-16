@@ -207,8 +207,8 @@ int main(int argc, char *argv[])
       eng.clear();      
          dfltPipe.render(camera, list);
          oitPipe.render(camera, list);
-         eng.clear();    
-         full2dPipe.render(oitPipe.getRenderTexture(), list);
+       //  eng.clear();    
+       //  full2dPipe.render(oitPipe.getRenderTexture(), list);
 
       eng.swap();    
 
