@@ -308,6 +308,7 @@ void main() {
 
     //set the color as the current texel color
     vec4 color = imageLoad(resultImage, pixelCoord);
+    //color=vec4(0.0,0.0,0.0,0.0);
 
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
@@ -323,9 +324,9 @@ struct Eng::PipelineOIT::Reserved
 {
     Eng::Shader vs;
     Eng::Shader fs;
-    
+
     Eng::Shader cs;
-    
+
     Eng::Shader vsPass2;
     Eng::Shader fsPass2;
 
@@ -333,17 +334,18 @@ struct Eng::PipelineOIT::Reserved
     Eng::Program programCS;
     Eng::Program programPass2;
 
-    Eng::Fbo fbo;
-    Eng::Texture renderTexture;
-    Eng::Texture depthTexture;
-    
+
+    //background for calculating the final color
+    Eng::Fbo fboBackground;
     Eng::Texture background;
+
+    Eng::Fbo fboTransparents;
+    Eng::Texture transparentsResult;
+    Eng::Texture transparentsDepth;
 
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
     Eng::Ssbo ssbo;
-
-    //Eng::Pbo pbo;
 
     GLuint clearBufferId;
 
@@ -440,14 +442,18 @@ bool Eng::PipelineOIT::init()
 
     reserved->textureStorage.create(width, height, GL_R32UI);
     reserved->textureStorage.reset();
-    
-    reserved->renderTexture.create(width, height, Texture::Format::r8g8b8a8);
-    reserved->depthTexture.create(width, height, Texture::Format::depth);
-    
-    reserved->fbo.attachTexture(reserved->renderTexture);
-    reserved->fbo.attachTexture(reserved->depthTexture);
-    
-    reserved->fbo.validate();
+
+    reserved->background.create(width, height, Texture::Format::r8g8b8a8);
+    reserved->fboBackground.attachTexture(reserved->background);
+
+    reserved->transparentsDepth.create(width, height, Texture::Format::depth);
+    reserved->transparentsResult.create(width, height, Texture::Format::r8g8b8a8);
+    reserved->fboTransparents.attachTexture(reserved->transparentsResult);
+    reserved->fboTransparents.attachTexture(reserved->transparentsDepth);
+
+
+    reserved->fboBackground.validate();
+    reserved->fboTransparents.validate();
 
 
     this->setDirty(false);
@@ -477,7 +483,7 @@ bool Eng::PipelineOIT::isWireframe() const
 
 const Eng::Texture& Eng::PipelineOIT::getRenderTexture() const
 {
-    return reserved->renderTexture;
+    return reserved->background;
 }
 
 ENG_API void Eng::PipelineOIT::setWireframe(bool flag)
@@ -507,9 +513,10 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
     int width = Eng::Base::dfltWindowSizeX;
     int height = Eng::Base::dfltWindowSizeY;
 
-    reserved->fbo.blit(width, height,true); // mi copio il risultato della scena solo con gli oggetti non trasparenti
+    reserved->fboBackground.blit(width, height, true);
+    // mi copio il risultato della scena solo con gli oggetti non trasparenti
     Fbo::reset(width, height);
-    
+
     glDepthMask(GL_FALSE);
 
     // Just to update the cache:
@@ -531,7 +538,8 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
     // Multipass rendering:
     uint32_t totNrOfLights = list.getNrOfLights();
 
-    //uint32_t totNrOfLights = 1;
+    glDisable(GL_CULL_FACE);
+
 
     for (uint32_t l = 0; l < totNrOfLights; l++)
     {
@@ -551,29 +559,51 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         // Render one light at time:
         const Eng::List::RenderableElem& lightRe = list.getRenderableElem(l);
 
-        // Re-enable this pipeline's program:
-        program.render();
-        
         glm::mat4 lightFinalMatrix = camera * lightRe.matrix; // Light position in eye coords
         lightRe.reference.get().render(0, &lightFinalMatrix);
 
         // Render meshes:
         list.render(camera, proj, Eng::List::Pass::transparents);
 
+
+        //active the transparents fbo
+        reserved->fboTransparents.blit(width, height, true);
+        reserved->fboTransparents.blit(width, height, true, true);
+        reserved->fboTransparents.render();
+
+
+        if (l > 0)
+        {
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_ONE,GL_ONE);
+        }
+        
+        glDepthMask(GL_TRUE);
+
+
         reserved->programPass2.render();
         reserved->programPass2.setMat4("projectionMat", proj);
 
         reserved->programPass2.setUInt("maxNodes", reserved->maxNodes);
 
-        reserved->renderTexture.bindImage(1);
+        reserved->background.bindImage(1);
         reserved->textureStorage.render(0);
         reserved->ssbo.render(0);
-        
+
         reserved->programPass2.setUInt("totNrOfLights", totNrOfLights);
         reserved->programPass2.setUInt("currentLight", l);
 
         list.render(camera, proj, Eng::List::Pass::transparents);
+
+        glDepthMask(GL_FALSE);
+        glDisable(GL_BLEND);
+
+        reserved->fboTransparents.blit(width, height);
+        reserved->fboTransparents.blit(width, height, false, true);
+        Fbo::reset(width, height);
     }
+
+    glEnable(GL_CULL_FACE);
 
 
     // Wireframe is on?

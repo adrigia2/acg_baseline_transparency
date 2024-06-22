@@ -85,7 +85,7 @@ public: //
    // Rendering methods:
    bool render(uint32_t value = 0, void *data = nullptr) const;
    static void reset(uint32_t viewportSizeX, uint32_t viewportSizeY);
-   bool blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool invertOrder=false) const;
+   bool blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool invertOrder=false, bool depthBuffer=false) const;
 
    // Managed:
    bool init() override;

@@ -32,9 +32,6 @@
    // Camera:
    Eng::Camera camera;   
 
-   // Light (loaded from OVO file later):
-   std::reference_wrapper<Eng::Light> light = Eng::Light::empty;
-
    // Pipelines:
    Eng::PipelineDefault dfltPipe;
    Eng::PipelineOIT oitPipe;
@@ -119,15 +116,6 @@ void keyboardCallback(int key, int scancode, int action, int mods)
    {
       case 'W': if (action == 0) oitPipe.setWireframe(!oitPipe.isWireframe()); break;         
       case 'S': if (action == 0) showShadowMap = !showShadowMap; break;
-      case 'P': if (action == 0)
-                {
-                   perspectiveProj = !perspectiveProj;
-                   if (perspectiveProj)
-                      light.get().setProjMatrix(glm::perspective(glm::radians(75.0f), 1.0f, 1.0f, 1000.0f));    // Perspective projection                     
-                   else
-                      light.get().setProjMatrix(glm::ortho(-100.0f, 100.0f, -100.0f, 100.0f, 1.0f, 1000.0f));   // Orthographic projection
-                }
-                break;
    }
 }
 
@@ -163,17 +151,14 @@ int main(int argc, char *argv[])
    /////////////////
    // Loading scene:   
    Eng::Ovo ovo; 
-   Eng::Node &root = ovo.load("simple3dSceneWithTransp.ovo");
+   Eng::Node &root = ovo.load("sceneWithCar.ovo");
    std::cout << "Scene graph:\n" << root.getTreeAsString() << std::endl;
    
-   // Get light ref:
-   light = dynamic_cast<Eng::Light &>(Eng::Container::getInstance().find("Omni001"));      
-   light.get().setAmbient({ 0.3f, 0.3f, 0.3f });
-   light.get().setColor({ 1.5f, 1.5f, 1.5f });
-   light.get().setProjMatrix(glm::ortho(-100.0f, 100.0f, -100.0f, 100.0f, 1.0f, 1000.0f)); // Orthographic projection   
-   
    // Get torus knot ref:
-   Eng::Mesh &tknot = dynamic_cast<Eng::Mesh &>(Eng::Container::getInstance().find("Torus Knot001"));   
+   //Eng::Mesh &tknot = dynamic_cast<Eng::Mesh &>(Eng::Container::getInstance().find("Torus Knot001"));   
+
+   Eng::Light &omni001=dynamic_cast<Eng::Light &>(Eng::Container::getInstance().find("Omni001"));
+   Eng::Light &omni002=dynamic_cast<Eng::Light &>(Eng::Container::getInstance().find("Omni002"));
 
    // Rendering elements:
    Eng::List list;      
@@ -197,7 +182,7 @@ int main(int argc, char *argv[])
       camera.update();      
 
       // Animate torus knot:      
-      tknot.setMatrix(glm::rotate(tknot.getMatrix(), glm::radians(15.0f * fpsFactor), glm::vec3(0.0f, 1.0f, 0.0f)));
+      //tknot.setMatrix(glm::rotate(tknot.getMatrix(), glm::radians(15.0f * fpsFactor), glm::vec3(0.0f, 1.0f, 0.0f)));
       
       // Update list:
       list.reset();

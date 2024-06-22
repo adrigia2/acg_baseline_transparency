@@ -299,6 +299,7 @@ uint32_t ENG_API Eng::Material::loadChunk(Eng::Serializer &serial, void *data)
    serial.deserialize(reserved->roughness);
    serial.deserialize(reserved->metalness);
    serial.deserialize(reserved->opacity);
+   
 
    // Textures:
    Eng::Container &container = Eng::Container::getInstance();

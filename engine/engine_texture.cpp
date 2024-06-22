@@ -530,7 +530,7 @@ bool ENG_API Eng::Texture::create(uint32_t sizeX, uint32_t sizeY, Format format)
 
       //////////////////////
       case Format::depth: //
-         intFormat = GL_DEPTH_COMPONENT32F;
+         intFormat = GL_DEPTH_COMPONENT24;
          extFormat = GL_DEPTH_COMPONENT;
          extType = GL_FLOAT;
          nrOfComponents = 1;

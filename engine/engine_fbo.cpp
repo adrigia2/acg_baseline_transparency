@@ -6,27 +6,24 @@
  */
 
 
-
 //////////////
 // #INCLUDE //
 //////////////
 
-   // Main include:
-   #include "engine.h"
+// Main include:
+#include "engine.h"
 
-   // OGL:      
-   #include <GL/glew.h>
-   #include <GLFW/glfw3.h>
-   
+// OGL:      
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
 
 
 ////////////
 // STATIC //
 ////////////
 
-   // Special values:
-   Eng::Fbo Eng::Fbo::empty("[empty]");
-   
+// Special values:
+Eng::Fbo Eng::Fbo::empty("[empty]");
 
 
 /////////////////////////
@@ -37,19 +34,19 @@
  * @brief Fbo reserved structure.
  */
 struct Eng::Fbo::Reserved
-{  
-   GLuint oglId;                          ///< OpenGL framebuffer ID   
-   std::vector<Attachment> attachment;    ///< Array of attachments
-   std::vector<GLenum> mrt;               ///< List of multiple rendering target
+{
+    GLuint oglId; ///< OpenGL framebuffer ID   
+    std::vector<Attachment> attachment; ///< Array of attachments
+    std::vector<GLenum> mrt; ///< List of multiple rendering target
 
 
-   /**
-    * Constructor. 
-    */
-   Reserved() : oglId{ 0 }
-   {}
+    /**
+     * Constructor. 
+     */
+    Reserved() : oglId{0}
+    {
+    }
 };
-
 
 
 ////////////////////////////////////
@@ -60,9 +57,9 @@ struct Eng::Fbo::Reserved
 /**
  * Constructor.
  */
-ENG_API Eng::Fbo::Attachment::Attachment() : type{ Eng::Fbo::Attachment::Type::none }, size{ 0, 0 }, data{ 0 }
-{}
-
+ENG_API Eng::Fbo::Attachment::Attachment() : type{Eng::Fbo::Attachment::Type::none}, size{0, 0}, data{0}
+{
+}
 
 
 ///////////////////////
@@ -74,8 +71,8 @@ ENG_API Eng::Fbo::Attachment::Attachment() : type{ Eng::Fbo::Attachment::Type::n
  * Constructor.
  */
 ENG_API Eng::Fbo::Fbo() : reserved(std::make_unique<Eng::Fbo::Reserved>())
-{		
-   ENG_LOG_DETAIL("[+]");   
+{
+    ENG_LOG_DETAIL("[+]");
 }
 
 
@@ -84,9 +81,9 @@ ENG_API Eng::Fbo::Fbo() : reserved(std::make_unique<Eng::Fbo::Reserved>())
  * Constructor with name.
  * @param name node name
  */
-ENG_API Eng::Fbo::Fbo(const std::string &name) : Eng::Object(name), reserved(std::make_unique<Eng::Fbo::Reserved>())
-{	   
-   ENG_LOG_DETAIL("[+]");   
+ENG_API Eng::Fbo::Fbo(const std::string& name) : Eng::Object(name), reserved(std::make_unique<Eng::Fbo::Reserved>())
+{
+    ENG_LOG_DETAIL("[+]");
 }
 
 
@@ -94,9 +91,10 @@ ENG_API Eng::Fbo::Fbo(const std::string &name) : Eng::Object(name), reserved(std
 /**
  * Move constructor. 
  */
-ENG_API Eng::Fbo::Fbo(Fbo &&other) : Eng::Object(std::move(other)), Eng::Managed(std::move(other)), reserved(std::move(other.reserved))
-{  
-   ENG_LOG_DETAIL("[M]");   
+ENG_API Eng::Fbo::Fbo(Fbo&& other) : Eng::Object(std::move(other)), Eng::Managed(std::move(other)),
+                                     reserved(std::move(other.reserved))
+{
+    ENG_LOG_DETAIL("[M]");
 }
 
 
@@ -105,10 +103,10 @@ ENG_API Eng::Fbo::Fbo(Fbo &&other) : Eng::Object(std::move(other)), Eng::Managed
  * Destructor.
  */
 ENG_API Eng::Fbo::~Fbo()
-{	
-   ENG_LOG_DETAIL("[-]");
-   if (reserved)
-      this->free();
+{
+    ENG_LOG_DETAIL("[-]");
+    if (reserved)
+        this->free();
 }
 
 
@@ -118,22 +116,22 @@ ENG_API Eng::Fbo::~Fbo()
  * @return TF
  */
 bool ENG_API Eng::Fbo::init()
-{	
-   if (this->Eng::Managed::init() == false)
-      return false;
+{
+    if (this->Eng::Managed::init() == false)
+        return false;
 
-   // Free texture if already stored:
-   if (reserved->oglId)   
-   {
-	   glDeleteFramebuffers(1, &reserved->oglId);
-      reserved->oglId = 0;
-   }   
+    // Free texture if already stored:
+    if (reserved->oglId)
+    {
+        glDeleteFramebuffers(1, &reserved->oglId);
+        reserved->oglId = 0;
+    }
 
-	// Create it:		    
-   glGenFramebuffers(1, &reserved->oglId);			
-   
-   // Done:   
-   return true;
+    // Create it:		    
+    glGenFramebuffers(1, &reserved->oglId);
+
+    // Done:   
+    return true;
 }
 
 
@@ -143,36 +141,36 @@ bool ENG_API Eng::Fbo::init()
  * @return TF
  */
 bool ENG_API Eng::Fbo::free()
-{	
-   if (this->Eng::Managed::free() == false)
-      return false;
+{
+    if (this->Eng::Managed::free() == false)
+        return false;
 
-   // Delete and remove render buffers:
-   for (uint32_t c = 0; c < getNrOfAttachments(); c++)
-   {
-      Eng::Fbo::Attachment &att = reserved->attachment.at(c);
-      switch (att.type)
-      {
-         /////////////////////////////////////////////////         
-         case Eng::Fbo::Attachment::Type::depth_buffer: //         
+    // Delete and remove render buffers:
+    for (uint32_t c = 0; c < getNrOfAttachments(); c++)
+    {
+        Eng::Fbo::Attachment& att = reserved->attachment.at(c);
+        switch (att.type)
+        {
+        /////////////////////////////////////////////////         
+        case Eng::Fbo::Attachment::Type::depth_buffer: //         
             GLuint oglId = static_cast<GLuint>(att.data);
-            glDeleteRenderbuffers(1, &oglId);    
+            glDeleteRenderbuffers(1, &oglId);
             break;
-      }	      
-      
-      reserved->attachment.erase(reserved->attachment.begin() + c);
-   }     
+        }
 
-   // Free framebuffer if used:
-   if (reserved->oglId)   
-   {
-	   glDeleteFramebuffers(1, &reserved->oglId);
-      reserved->oglId = 0;
-   }   
+        reserved->attachment.erase(reserved->attachment.begin() + c);
+    }
 
-   // Done:   
-   return true;
-}	 
+    // Free framebuffer if used:
+    if (reserved->oglId)
+    {
+        glDeleteFramebuffers(1, &reserved->oglId);
+        reserved->oglId = 0;
+    }
+
+    // Done:   
+    return true;
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -181,9 +179,9 @@ bool ENG_API Eng::Fbo::free()
  * @return number of attachments
  */
 uint32_t ENG_API Eng::Fbo::getNrOfAttachments() const
-{	 
-   return static_cast<uint32_t>(reserved->attachment.size());
-}	 
+{
+    return static_cast<uint32_t>(reserved->attachment.size());
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,15 +189,15 @@ uint32_t ENG_API Eng::Fbo::getNrOfAttachments() const
  * Get framebuffer width.  
  * @return width
  */
-uint32_t ENG_API Eng::Fbo::getSizeX() const 
-{	 
-   if (reserved->attachment.size() == 0)
-   {
-      ENG_LOG_ERROR("Empty FBO");
-      return 0;
-   }
-   return reserved->attachment[0].size.x;   
-}	 
+uint32_t ENG_API Eng::Fbo::getSizeX() const
+{
+    if (reserved->attachment.size() == 0)
+    {
+        ENG_LOG_ERROR("Empty FBO");
+        return 0;
+    }
+    return reserved->attachment[0].size.x;
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -207,15 +205,15 @@ uint32_t ENG_API Eng::Fbo::getSizeX() const
  * Get framebuffer height.  
  * @return height
  */
-uint32_t ENG_API Eng::Fbo::getSizeY() const 
-{	 
-   if (reserved->attachment.size() == 0)
-   {
-      ENG_LOG_ERROR("Empty FBO");
-      return 0;
-   }
-   return reserved->attachment[0].size.y;   
-}	 
+uint32_t ENG_API Eng::Fbo::getSizeY() const
+{
+    if (reserved->attachment.size() == 0)
+    {
+        ENG_LOG_ERROR("Empty FBO");
+        return 0;
+    }
+    return reserved->attachment[0].size.y;
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -224,51 +222,51 @@ uint32_t ENG_API Eng::Fbo::getSizeY() const
  * @param texture texture
  * @return TF
  */
-bool ENG_API Eng::Fbo::attachTexture(const Eng::Texture &texture, uint32_t level, uint32_t side)
-{	  
-   // Safety net:
-   if (texture == Eng::Texture::empty)
-   {
-      ENG_LOG_ERROR("Invalid params");
-      return false;
-   }
+bool ENG_API Eng::Fbo::attachTexture(const Eng::Texture& texture, uint32_t level, uint32_t side)
+{
+    // Safety net:
+    if (texture == Eng::Texture::empty)
+    {
+        ENG_LOG_ERROR("Invalid params");
+        return false;
+    }
 
-   // Lazy-load on first attachment:
-   if (!this->isInitialized())
-      this->init();
+    // Lazy-load on first attachment:
+    if (!this->isInitialized())
+        this->init();
 
-   // Prepare attachment:
-   uint32_t attId = static_cast<uint32_t>(reserved->attachment.size());
-   Eng::Fbo::Attachment att;   
-   att.texture = texture;
-   att.size = glm::u32vec2{ texture.getSizeX(), texture.getSizeY() };   
-   
-   glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);
-   switch (texture.getFormat())
-   {
-      /////////////////////////////////////
-      case Eng::Texture::Format::r8g8b8: //
-      case Eng::Texture::Format::r8g8b8a8:         
-         att.type = Eng::Fbo::Attachment::Type::color_texture;
-         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + attId, GL_TEXTURE_2D, texture.getOglHandle(), 0);								
-         break;
+    // Prepare attachment:
+    uint32_t attId = static_cast<uint32_t>(reserved->attachment.size());
+    Eng::Fbo::Attachment att;
+    att.texture = texture;
+    att.size = glm::u32vec2{texture.getSizeX(), texture.getSizeY()};
 
-      ////////////////////////////////////
-      case Eng::Texture::Format::depth: //
-         att.type = Eng::Fbo::Attachment::Type::depth_texture;
-         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture.getOglHandle(), 0);         
-         break;
+    glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);
+    switch (texture.getFormat())
+    {
+    /////////////////////////////////////
+    case Eng::Texture::Format::r8g8b8: //
+    case Eng::Texture::Format::r8g8b8a8:
+        att.type = Eng::Fbo::Attachment::Type::color_texture;
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + attId, GL_TEXTURE_2D, texture.getOglHandle(), 0);
+        break;
 
-      ///////////
-      default: //
-         ENG_LOG_ERROR("Unsupported texture format");   
-         return false;
-   }      
+    ////////////////////////////////////
+    case Eng::Texture::Format::depth: //
+        att.type = Eng::Fbo::Attachment::Type::depth_texture;
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, texture.getOglHandle(), 0);
+        break;
 
-   // Done:   
-   reserved->attachment.push_back(att);
-   return updateMrtCache();
-}	 
+    ///////////
+    default: //
+        ENG_LOG_ERROR("Unsupported texture format");
+        return false;
+    }
+
+    // Done:   
+    reserved->attachment.push_back(att);
+    return updateMrtCache();
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -279,91 +277,91 @@ bool ENG_API Eng::Fbo::attachTexture(const Eng::Texture &texture, uint32_t level
  * @return TF
  */
 bool ENG_API Eng::Fbo::attachDepthBuffer(uint32_t sizeX, uint32_t sizeY)
-{	
-   // Lazy-load on first attachment:
-   if (!this->isInitialized())
-      this->init();
+{
+    // Lazy-load on first attachment:
+    if (!this->isInitialized())
+        this->init();
 
-   // Prepare attachment:
-   uint32_t attId = static_cast<uint32_t>(reserved->attachment.size());         
-   Eng::Fbo::Attachment att;   
-   att.type = Eng::Fbo::Attachment::Type::depth_buffer;
-   att.size = glm::u32vec2{ sizeX, sizeY };
-   
-   // Generate render buffer:
-   GLuint oglId = 0;
-   glGenRenderbuffers(1, &oglId);		
-	glBindRenderbuffer(GL_RENDERBUFFER, oglId);
+    // Prepare attachment:
+    uint32_t attId = static_cast<uint32_t>(reserved->attachment.size());
+    Eng::Fbo::Attachment att;
+    att.type = Eng::Fbo::Attachment::Type::depth_buffer;
+    att.size = glm::u32vec2{sizeX, sizeY};
 
-   // Attach renderbuffer:
-   glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);	
-   glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32F, sizeX, sizeY);	
-	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, oglId);					   
+    // Generate render buffer:
+    GLuint oglId = 0;
+    glGenRenderbuffers(1, &oglId);
+    glBindRenderbuffer(GL_RENDERBUFFER, oglId);
 
-   // Done:   
-   att.data = oglId;
-   reserved->attachment.push_back(att);
-   return updateMrtCache();
-}	 
+    // Attach renderbuffer:
+    glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);
+    glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT32F, sizeX, sizeY);
+    glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, oglId);
+
+    // Done:   
+    att.data = oglId;
+    reserved->attachment.push_back(att);
+    return updateMrtCache();
+}
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	 
 /** 
  * Update the MRT cache. 
  * @return TF
- */	
+ */
 bool ENG_API Eng::Fbo::updateMrtCache()
-{ 
-   bool oneAtLeast = false;
-   reserved->mrt.clear();
-   for (uint32_t c = 0; c < this->getNrOfAttachments(); c++)
-	   switch (reserved->attachment.at(c).type)
-		{
-         //////////////////////////////////////////////////
-         case Eng::Fbo::Attachment::Type::color_texture: //         
-            reserved->mrt.push_back(GL_COLOR_ATTACHMENT0 + c);				
+{
+    bool oneAtLeast = false;
+    reserved->mrt.clear();
+    for (uint32_t c = 0; c < this->getNrOfAttachments(); c++)
+        switch (reserved->attachment.at(c).type)
+        {
+        //////////////////////////////////////////////////
+        case Eng::Fbo::Attachment::Type::color_texture: //         
+            reserved->mrt.push_back(GL_COLOR_ATTACHMENT0 + c);
             oneAtLeast = true;
             break;
-		}	
+        }
 
-   // No color attachments?
-   if (!oneAtLeast)
-   {
-      glDrawBuffer(GL_NONE);
-      glReadBuffer(GL_NONE);
-   }
+    // No color attachments?
+    if (!oneAtLeast)
+    {
+        glDrawBuffer(GL_NONE);
+        glReadBuffer(GL_NONE);
+    }
 
-   // Done: 
-   return true;
-}	
+    // Done: 
+    return true;
+}
 
-	 
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////	 
 /** 
  * Validate the state of the framebuffer.
  * @return TF
- */	
+ */
 bool ENG_API Eng::Fbo::validate() const
 {
-   // Additional check (for attachments of different size, which I think are ok according to the specs):
-   bool throwWarning = false;
-   if (this->getNrOfAttachments() > 1)
-      for (uint32_t c = 1; c < this->getNrOfAttachments(); c++)
-         if (reserved->attachment.at(c).size != reserved->attachment.at(0).size)
-            throwWarning = true;
-   if (throwWarning)
-	   ENG_LOG_WARN("Attachments have different size");
+    // Additional check (for attachments of different size, which I think are ok according to the specs):
+    bool throwWarning = false;
+    if (this->getNrOfAttachments() > 1)
+        for (uint32_t c = 1; c < this->getNrOfAttachments(); c++)
+            if (reserved->attachment.at(c).size != reserved->attachment.at(0).size)
+                throwWarning = true;
+    if (throwWarning)
+        ENG_LOG_WARN("Attachments have different size");
 
-	glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);	
-	GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
-	if (status != GL_FRAMEBUFFER_COMPLETE)
-	{	   
-      ENG_LOG_ERROR("Framebuffer not complete (error: %u)", status);
-		return false;
-	}
-	
-	// Done:
-	return true;
+    glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);
+    GLenum status = glCheckFramebufferStatus(GL_FRAMEBUFFER);
+    if (status != GL_FRAMEBUFFER_COMPLETE)
+    {
+        ENG_LOG_ERROR("Framebuffer not complete (error: %u)", status);
+        return false;
+    }
+
+    // Done:
+    return true;
 }
 
 
@@ -374,9 +372,9 @@ bool ENG_API Eng::Fbo::validate() const
  * @param viewportSizeY height of the viewport
  */
 void ENG_API Eng::Fbo::reset(uint32_t viewportSizeX, uint32_t viewportSizeY)
-{	   
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);	   
-   glViewport(0, 0, viewportSizeX, viewportSizeY);
+{
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glViewport(0, 0, viewportSizeX, viewportSizeY);
 }
 
 
@@ -387,27 +385,31 @@ void ENG_API Eng::Fbo::reset(uint32_t viewportSizeX, uint32_t viewportSizeY)
  * @param viewportSizeY height of the viewport
  * @return TF
  */
-bool ENG_API Eng::Fbo::blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool invertOrder) const
+bool ENG_API Eng::Fbo::blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool invertOrder, bool depthBuffer) const
 {
+    if (invertOrder)
+    {
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, reserved->oglId);
+    }
+    else
+    {
+        glBindFramebuffer(GL_READ_FRAMEBUFFER, reserved->oglId);
+        glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
+    }
 
-   if(invertOrder)
-   {
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, 0);
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, reserved->oglId);
-   }
-   else
-   {
-      glBindFramebuffer(GL_READ_FRAMEBUFFER, reserved->oglId);
-      glBindFramebuffer(GL_DRAW_FRAMEBUFFER, 0);
-   }
-      
-      
-   glBlitFramebuffer(0, 0, getSizeX(), getSizeY(),
-                     0, 0, viewportSizeX, viewportSizeY,
-                     GL_COLOR_BUFFER_BIT, GL_NEAREST);
+    if (depthBuffer)
+        glBlitFramebuffer(0, 0, getSizeX(), getSizeY(),
+                          0, 0, viewportSizeX, viewportSizeY,
+                          GL_DEPTH_BUFFER_BIT, GL_NEAREST);
+    else
+        glBlitFramebuffer(0, 0, getSizeX(), getSizeY(),
+                          0, 0, viewportSizeX, viewportSizeY,
+                          GL_COLOR_BUFFER_BIT, GL_NEAREST);
 
-   // Done:
-   return true;
+
+    // Done:
+    return true;
 }
 
 
@@ -418,22 +420,22 @@ bool ENG_API Eng::Fbo::blit(uint32_t viewportSizeX, uint32_t viewportSizeY, bool
  * @param data generic pointer to any kind of data
  * @return TF
  */
-bool ENG_API Eng::Fbo::render(uint32_t value, void *data) const
-{	
-   // Safety net:
-   if (this->getNrOfAttachments() == 0)
-   {
-      ENG_LOG_ERROR("No attachments available");
-      return false;
-   }
+bool ENG_API Eng::Fbo::render(uint32_t value, void* data) const
+{
+    // Safety net:
+    if (this->getNrOfAttachments() == 0)
+    {
+        ENG_LOG_ERROR("No attachments available");
+        return false;
+    }
 
-   // Bind buffers:
-	glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);	    
-   const GLsizei nrOfMrts = static_cast<GLsizei>(reserved->mrt.size());
-   if (nrOfMrts)   
-      glDrawBuffers(nrOfMrts, reserved->mrt.data());         
+    // Bind buffers:
+    glBindFramebuffer(GL_FRAMEBUFFER, reserved->oglId);
+    const GLsizei nrOfMrts = static_cast<GLsizei>(reserved->mrt.size());
+    if (nrOfMrts)
+        glDrawBuffers(nrOfMrts, reserved->mrt.data());
     glViewport(0, 0, getSizeX(), getSizeY());
-      
-   // Done:
-   return true;
+
+    // Done:
+    return true;
 }
