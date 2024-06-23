@@ -1133,6 +1133,10 @@ LOD: 1, v: 151, f: 224
 LOD: 1, v: 151, f: 224
 [*] [OGL] Buffer detailed info: Buffer object 23 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 24 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 52494, f: 17504
+[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 26 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
@@ -1141,14 +1145,13 @@ LOD: 1, v: 151, f: 224
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
-[D] [Eng::Shader::load:254] Shader compiled
-[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 27 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture1' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture3' not found
-[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
-[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
-[*] [OGL] Buffer detailed info: Buffer object 26 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 27 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 27 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 28 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'maxNodes' not found
 [?] [Eng::Program::getParamLocation] Variable 'currentLight' not found
 [?] [Eng::Program::getParamLocation] Variable 'normalMat' not found
@@ -1162,7 +1165,7 @@ LOD: 1, v: 151, f: 224
 [?] [Eng::Program::getParamLocation] Variable 'texture3' not found
 [D] [Eng::Base::free:346] Releasing context...
 [D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
-[D] [Eng::Managed::forceRelease:187] 99 managed object(s) released out of 99
+[D] [Eng::Managed::forceRelease:187] 100 managed object(s) released out of 100
    Context deinitialized
 [D] [Eng::Ssbo::~Ssbo:95] [-]
 [D] [Eng::Ssbo::~Ssbo:95] [-]

@@ -108,7 +108,6 @@
     <ClCompile Include="engine_node.cpp" />
     <ClCompile Include="engine_object.cpp" />
     <ClCompile Include="engine_ovo.cpp" />
-    <ClCompile Include="engine_pbo.cpp" />
     <ClCompile Include="engine_pipeline.cpp" />
     <ClCompile Include="engine_pipeline_default.cpp" />
     <ClCompile Include="engine_pipeline_fullscreen2d.cpp" />
@@ -140,7 +139,6 @@
     <ClInclude Include="engine_node.h" />
     <ClInclude Include="engine_object.h" />
     <ClInclude Include="engine_ovo.h" />
-    <ClInclude Include="engine_pbo.h" />
     <ClInclude Include="engine_pipeline.h" />
     <ClInclude Include="engine_pipeline_default.h" />
     <ClInclude Include="engine_pipeline_fullscreen2d.h" />

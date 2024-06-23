@@ -9,7 +9,6 @@
 #include <GLFW/glfw3.h>
 
 #include "engine_acbo.h"
-#include "engine_pbo.h"
 #include "engine_ssbo.h"
 #include "engine_texture_storage.h"
 
@@ -170,72 +169,6 @@ void main()
    //outFragment = nodes[nodeIdx].color;      
 })";
 
-static const std::string pipeline_cs = R"(
-
-#define MAX_FRAGMENTS 75
-
-layout(local_size_x = 32, local_size_y = 32) in;
-
-struct NodeType {
-  vec4 color;
-  float depth;
-  uint next;
-};
-
-layout(binding = 1, rgba8) uniform image2D resultImage;
-layout(binding = 0, std430) buffer linkedLists {
-  NodeType nodes[];
-};
-layout(binding = 0, r32ui) uniform uimage2D headPointers;
-uniform uint totNrOfLights;
-uniform uint currentLight;
-
-
-void main() {
-
-    ivec2 pixelCoord = ivec2(gl_GlobalInvocationID.xy);
-    ivec2 size = imageSize(resultImage);
-
-    NodeType frags[MAX_FRAGMENTS];
-    int count = 0;
-
-    uint n = imageLoad(headPointers, pixelCoord).r;
-
-    while (n != 0xffffffff && count < MAX_FRAGMENTS) {
-        frags[count] = nodes[n];
-        n = frags[count].next;
-        count++;
-    }
-
-    for( uint i = 1; i < count; i++ )
-  {
-    NodeType toInsert = frags[i];
-    uint j = i;
-    while( j > 0 && toInsert.depth > frags[j-1].depth ) {
-      frags[j] = frags[j-1];
-      j--;
-    }
-    frags[j] = toInsert;
-  }
-
-    //set the color as the current texel color
-    vec4 color = imageLoad(resultImage, pixelCoord);
-    //color=color*(1/float(totNrOfLights));
-
-    color=vec4(0.0,0.0,0.0,0.0);
-
-    for (int i = 0; i < count; i++) {
-        color = mix(color, frags[i].color, frags[i].color.a);
-    }
-
-    
-
-    imageStore(resultImage, pixelCoord, color);
-}
-
-
-)";
-
 static const std::string pipeline_vs_pass2 = R"(
  
 // Per-vertex data from VBOs:
@@ -330,13 +263,10 @@ struct Eng::PipelineOIT::Reserved
     Eng::Shader vs;
     Eng::Shader fs;
 
-    Eng::Shader cs;
-
     Eng::Shader vsPass2;
     Eng::Shader fsPass2;
 
     Eng::Program program;
-    Eng::Program programCS;
     Eng::Program programPass2;
 
 
@@ -351,8 +281,6 @@ struct Eng::PipelineOIT::Reserved
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
     Eng::Ssbo ssbo;
-
-    GLuint clearBufferId;
 
     GLuint maxNodes = 20 * Eng::Base::dfltWindowSizeX * Eng::Base::dfltWindowSizeY;
     GLint nodeSize = 5 * sizeof(GLfloat) + sizeof(GLuint); // The size of a linked list node
@@ -406,16 +334,8 @@ bool Eng::PipelineOIT::init()
     // Build:
     reserved->vs.load(Eng::Shader::Type::vertex, pipeline_vs);
     reserved->fs.load(Eng::Shader::Type::fragment, pipeline_fs);
-    reserved->cs.load(Eng::Shader::Type::compute, pipeline_cs);
     reserved->vsPass2.load(Eng::Shader::Type::vertex, pipeline_vs_pass2);
     reserved->fsPass2.load(Eng::Shader::Type::fragment, pipeline_fs_pass2);
-
-
-    if (reserved->programCS.build({reserved->cs}) == false)
-    {
-        ENG_LOG_ERROR("Unable to build compute program");
-        return false;
-    }
 
 
     if (reserved->program.build({reserved->vs, reserved->fs}) == false)
@@ -439,8 +359,9 @@ bool Eng::PipelineOIT::init()
         return false;
     }
 
-    int width = Eng::Base::dfltWindowSizeX;
-    int height = Eng::Base::dfltWindowSizeY;
+    const auto winSize= Eng::Base::getInstance().getWindowSize();
+    const int width = winSize.x;
+    const int height = winSize.y;
 
     reserved->acbo.create();
     reserved->ssbo.create(reserved->maxNodes * reserved->nodeSize, NULL, GL_DYNAMIC_COPY);
@@ -514,9 +435,10 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
             return false;
         }
 
+    const auto winSize= Eng::Base::getInstance().getWindowSize();
+    const int width = winSize.x;
+    const int height = winSize.y;
 
-    int width = Eng::Base::dfltWindowSizeX;
-    int height = Eng::Base::dfltWindowSizeY;
 
     reserved->fboBackground.blit(width, height, true);
     // mi copio il risultato della scena solo con gli oggetti non trasparenti
@@ -541,7 +463,7 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 
     // Multipass rendering:
-    uint32_t totNrOfLights = list.getNrOfLights();
+    const uint32_t totNrOfLights = list.getNrOfLights();
 
     glDisable(GL_CULL_FACE);
 

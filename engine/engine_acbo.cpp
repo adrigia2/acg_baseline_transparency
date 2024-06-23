@@ -134,7 +134,7 @@ bool ENG_API Eng::Acbo::free()
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /**
- * Unbind any vertex array object.  
+ * Unbind any atomic counter buffer object.  
  */
 void ENG_API Eng::Acbo::reset()
 {
