@@ -229,12 +229,6 @@ Texture (height): [none]
 Texture (roughness): [none]
 Texture (metalness): [none]
 [D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
-Texture (albedo): [none]
-Texture (normal): [none]
-Texture (height): [none]
-Texture (roughness): [none]
-Texture (metalness): [none]
-[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
 Texture (albedo): 12248_Bird_v1_diff.dds
 [D] [Eng::Bitmap::load:421] File fourCC: 'DXT1'
 [D] [Eng::Bitmap::load:501] Mipmap: 0, 1024x1024, 524288 bytes
@@ -344,6 +338,748 @@ Texture (roughness): antique_veneer1_Roughness.dds
 [D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
 [D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
 Texture (metalness): [none]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): wispy-grass-meadow_albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f0, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f0, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f0, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f0, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f0, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f0, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f0, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f0, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f0, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f0, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f0, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f0, x: 1, y: 1
+Texture (normal): wispy-grass-meadow_normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): wispy-grass-meadow_roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): wispy-grass-meadow_metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): plasticpattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f0, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f0, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f0, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f0, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f0, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f0, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f0, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f0, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f0, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f0, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f0, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f0, x: 1, y: 1
+Texture (normal): plasticpattern1-normal2-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): plasticpattern1-roughness2.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): plasticpattern1-metalness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): yoga-mat-wavy-pattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT5'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f3, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f3, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f3, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f3, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f3, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f3, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f3, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f3, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f3, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f3, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f3, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f3, x: 1, y: 1
+Texture (normal): yoga-mat-wavy-pattern1-Normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): yoga-mat-wavy-pattern1-Roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): yoga-mat-wavy-pattern1-Metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): yoga-mat-wavy-pattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT5'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f3, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f3, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f3, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f3, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f3, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f3, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f3, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f3, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f3, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f3, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f3, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f3, x: 1, y: 1
+Texture (normal): yoga-mat-wavy-pattern1-Normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): yoga-mat-wavy-pattern1-Roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): yoga-mat-wavy-pattern1-Metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): yoga-mat-wavy-pattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT5'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f3, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f3, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f3, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f3, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f3, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f3, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f3, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f3, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f3, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f3, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f3, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f3, x: 1, y: 1
+Texture (normal): yoga-mat-wavy-pattern1-Normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): yoga-mat-wavy-pattern1-Roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): yoga-mat-wavy-pattern1-Metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): yoga-mat-wavy-pattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT5'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f3, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f3, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f3, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f3, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f3, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f3, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f3, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f3, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f3, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f3, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f3, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f3, x: 1, y: 1
+Texture (normal): yoga-mat-wavy-pattern1-Normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): yoga-mat-wavy-pattern1-Roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): yoga-mat-wavy-pattern1-Metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+[D] [Eng::Ovo::load::<lambda_1>::operator ():145] Processing material...
+Texture (albedo): yoga-mat-wavy-pattern1-albedo.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'DXT5'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x83f3, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x83f3, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x83f3, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x83f3, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x83f3, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x83f3, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x83f3, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x83f3, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x83f3, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x83f3, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x83f3, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x83f3, x: 1, y: 1
+Texture (normal): yoga-mat-wavy-pattern1-Normal-ogl.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI2'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 4194304 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 1048576 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 262144 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 65536 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 16384 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 4096 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 1024 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 256 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 64 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 16 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 16 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbd, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbd, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbd, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbd, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbd, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbd, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbd, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbd, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbd, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbd, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbd, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbd, x: 1, y: 1
+Texture (height): [none]
+Texture (roughness): yoga-mat-wavy-pattern1-Roughness.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
+Texture (metalness): yoga-mat-wavy-pattern1-Metallic.dds
+[D] [Eng::Bitmap::load:421] File fourCC: 'ATI1'
+[D] [Eng::Bitmap::load:501] Mipmap: 0, 2048x2048, 2097152 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 1, 1024x1024, 524288 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 2, 512x512, 131072 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 3, 256x256, 32768 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 4, 128x128, 8192 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 5, 64x64, 2048 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 6, 32x32, 512 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 7, 16x16, 128 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 8, 8x8, 32 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 9, 4x4, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 10, 2x2, 8 bytes
+[D] [Eng::Bitmap::load:501] Mipmap: 11, 1x1, 8 bytes
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/12, IntFormat: 0x8dbb, x: 2048, y: 2048
+[D] [Eng::Texture::load:457] Type: 2D, Level: 2/12, IntFormat: 0x8dbb, x: 1024, y: 1024
+[D] [Eng::Texture::load:457] Type: 2D, Level: 3/12, IntFormat: 0x8dbb, x: 512, y: 512
+[D] [Eng::Texture::load:457] Type: 2D, Level: 4/12, IntFormat: 0x8dbb, x: 256, y: 256
+[D] [Eng::Texture::load:457] Type: 2D, Level: 5/12, IntFormat: 0x8dbb, x: 128, y: 128
+[D] [Eng::Texture::load:457] Type: 2D, Level: 6/12, IntFormat: 0x8dbb, x: 64, y: 64
+[D] [Eng::Texture::load:457] Type: 2D, Level: 7/12, IntFormat: 0x8dbb, x: 32, y: 32
+[D] [Eng::Texture::load:457] Type: 2D, Level: 8/12, IntFormat: 0x8dbb, x: 16, y: 16
+[D] [Eng::Texture::load:457] Type: 2D, Level: 9/12, IntFormat: 0x8dbb, x: 8, y: 8
+[D] [Eng::Texture::load:457] Type: 2D, Level: 10/12, IntFormat: 0x8dbb, x: 4, y: 4
+[D] [Eng::Texture::load:457] Type: 2D, Level: 11/12, IntFormat: 0x8dbb, x: 2, y: 2
+[D] [Eng::Texture::load:457] Type: 2D, Level: 12/12, IntFormat: 0x8dbb, x: 1, y: 1
 [D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
 [D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
 LOD: 1, v: 4, f: 2
@@ -358,39 +1094,62 @@ LOD: 1, v: 54, f: 20
 [*] [OGL] Buffer detailed info: Buffer object 5 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 6 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
-LOD: 1, v: 1152, f: 384
+LOD: 1, v: 52490, f: 17504
 [*] [OGL] Buffer detailed info: Buffer object 7 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 8 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
-LOD: 1, v: 52490, f: 17504
+LOD: 1, v: 2904, f: 968
 [*] [OGL] Buffer detailed info: Buffer object 9 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 10 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():187] Processing light...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():187] Processing light...
 [D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
-LOD: 1, v: 2904, f: 968
+LOD: 1, v: 151, f: 224
 [*] [OGL] Buffer detailed info: Buffer object 11 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [*] [OGL] Buffer detailed info: Buffer object 12 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
-[D] [Eng::Ovo::load::<lambda_1>::operator ():187] Processing light...
-[D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
-[D] [Eng::Ovo::load::<lambda_1>::operator ():157] Processing node...
-[D] [Eng::Ovo::load::<lambda_1>::operator ():187] Processing light...
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 13 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 14 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 15 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 16 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 17 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 18 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 19 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 20 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 21 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 22 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[D] [Eng::Ovo::load::<lambda_1>::operator ():172] Processing mesh...
+LOD: 1, v: 151, f: 224
+[*] [OGL] Buffer detailed info: Buffer object 23 (bound to GL_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 24 (bound to GL_ELEMENT_ARRAY_BUFFER_ARB, usage hint is GL_STATIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [?] [Eng::Program::getParamLocation] Variable 'lightMatrix' not found
+[D] [Eng::Texture::load:457] Type: 2D, Level: 1/1, IntFormat: 0x8058, x: 1, y: 1
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
 [D] [Eng::Shader::load:254] Shader compiled
-[*] [OGL] Buffer detailed info: Buffer object 13 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'mtlAlbedo' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture1' not found
-[D] [Eng::Texture::load:457] Type: 2D, Level: 1/1, IntFormat: 0x8058, x: 1, y: 1
 [?] [Eng::Program::getParamLocation] Variable 'texture3' not found
-[*] [OGL] Buffer detailed info: Buffer object 13 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
-[*] [OGL] Buffer detailed info: Buffer object 13 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
-[*] [OGL] Buffer detailed info: Buffer object 14 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 25 (bound to GL_ATOMIC_COUNTER_BUFFER, and GL_ATOMIC_COUNTER_BUFFER (0), usage hint is GL_DYNAMIC_DRAW) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
+[*] [OGL] Buffer detailed info: Buffer object 26 (bound to GL_SHADER_STORAGE_BUFFER, and GL_SHADER_STORAGE_BUFFER (0), usage hint is GL_DYNAMIC_COPY) will use VIDEO memory as the source for buffer object operations. [Source = API, Type = Other, Severity = Unknown, ID = 131185]
 [?] [Eng::Program::getParamLocation] Variable 'maxNodes' not found
-[?] [Eng::Program::getParamLocation] Variable 'totNrOfLights' not found
 [?] [Eng::Program::getParamLocation] Variable 'currentLight' not found
 [?] [Eng::Program::getParamLocation] Variable 'normalMat' not found
 [?] [Eng::Program::getParamLocation] Variable 'mtlEmission' not found
@@ -401,4 +1160,10 @@ LOD: 1, v: 2904, f: 968
 [?] [Eng::Program::getParamLocation] Variable 'texture1' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture2' not found
 [?] [Eng::Program::getParamLocation] Variable 'texture3' not found
+[D] [Eng::Base::free:346] Releasing context...
+[D] [Eng::Managed::forceRelease:164] Forced release of managed objects...
+[D] [Eng::Managed::forceRelease:187] 99 managed object(s) released out of 99
+   Context deinitialized
 [D] [Eng::Ssbo::~Ssbo:95] [-]
+[D] [Eng::Ssbo::~Ssbo:95] [-]
+[D] [Eng::Log::free:107] [-] Logging completed

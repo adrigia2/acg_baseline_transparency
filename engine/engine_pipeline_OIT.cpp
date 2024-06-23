@@ -220,10 +220,15 @@ void main() {
 
     //set the color as the current texel color
     vec4 color = imageLoad(resultImage, pixelCoord);
+    //color=color*(1/float(totNrOfLights));
+
+    color=vec4(0.0,0.0,0.0,0.0);
 
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
     }
+
+    
 
     imageStore(resultImage, pixelCoord, color);
 }
@@ -308,7 +313,7 @@ void main() {
 
     //set the color as the current texel color
     vec4 color = imageLoad(resultImage, pixelCoord);
-    //color=vec4(0.0,0.0,0.0,0.0);
+    color=color*(1/float(totNrOfLights));
 
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
@@ -594,14 +599,16 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         reserved->programPass2.setUInt("currentLight", l);
 
         list.render(camera, proj, Eng::List::Pass::transparents);
-
-        glDepthMask(GL_FALSE);
-        glDisable(GL_BLEND);
+        
 
         reserved->fboTransparents.blit(width, height);
         reserved->fboTransparents.blit(width, height, false, true);
         Fbo::reset(width, height);
+        
+        glDepthMask(GL_FALSE);
+        glDisable(GL_BLEND);
     }
+
 
     glEnable(GL_CULL_FACE);
 

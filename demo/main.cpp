@@ -160,6 +160,9 @@ int main(int argc, char *argv[])
    Eng::Light &omni001=dynamic_cast<Eng::Light &>(Eng::Container::getInstance().find("Omni001"));
    Eng::Light &omni002=dynamic_cast<Eng::Light &>(Eng::Container::getInstance().find("Omni002"));
 
+   omni001.setColor(glm::vec3(1.0f, 0.0f, 0.0f));
+   omni002.setColor(glm::vec3(0.0f, 1.0f, 0.0f));
+
    // Rendering elements:
    Eng::List list;      
    
