@@ -274,10 +274,6 @@ struct Eng::PipelineOIT::Reserved
     Eng::Fbo fboBackground;
     Eng::Texture background;
 
-    Eng::Fbo fboTransparents;
-    Eng::Texture transparentsResult;
-    Eng::Texture transparentsDepth;
-
     Eng::Acbo acbo;
     Eng::TextureStorage textureStorage;
     Eng::Ssbo ssbo;
@@ -372,15 +368,7 @@ bool Eng::PipelineOIT::init()
     reserved->background.create(width, height, Texture::Format::r8g8b8a8);
     reserved->fboBackground.attachTexture(reserved->background);
 
-    reserved->transparentsDepth.create(width, height, Texture::Format::depth);
-    reserved->transparentsResult.create(width, height, Texture::Format::r8g8b8a8);
-    reserved->fboTransparents.attachTexture(reserved->transparentsResult);
-    reserved->fboTransparents.attachTexture(reserved->transparentsDepth);
-
-
     reserved->fboBackground.validate();
-    reserved->fboTransparents.validate();
-
 
     this->setDirty(false);
     return true;
@@ -493,11 +481,6 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         list.render(camera, proj, Eng::List::Pass::transparents);
 
 
-        //active the transparents fbo
-        reserved->fboTransparents.blit(width, height, true);
-        reserved->fboTransparents.blit(width, height, true, true);
-        reserved->fboTransparents.render();
-
 
         if (l > 0)
         {
@@ -523,10 +506,6 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         list.render(camera, proj, Eng::List::Pass::transparents);
         
 
-        reserved->fboTransparents.blit(width, height);
-        reserved->fboTransparents.blit(width, height, false, true);
-        Fbo::reset(width, height);
-        
         glDepthMask(GL_FALSE);
         glDisable(GL_BLEND);
     }
