@@ -55,7 +55,8 @@ void main()
  */
 static const std::string pipeline_fs = R"(
 
-layout(early_fragment_tests) in; // Enable early depth tests
+// early fragment test
+layout(early_fragment_tests) in;
 
 // Uniform:
 #ifdef ENG_BINDLESS_SUPPORTED
@@ -196,6 +197,9 @@ void main()
 
 static const std::string pipeline_fs_pass2 = R"(
 
+// early fragment test
+layout(early_fragment_tests) in;
+
 #define MAX_FRAGMENTS 75
 
 in vec4 fragPosition;
@@ -248,11 +252,15 @@ void main() {
     //set the color as the current texel color
     vec4 color = imageLoad(resultImage, pixelCoord);
 
-    color=color*(1/float(totNrOfLights));
+    // multipass rendering
+    color/=float(totNrOfLights);
 
     for (int i = 0; i < count; i++) {
         color = mix(color, frags[i].color, frags[i].color.a);
     }
+    
+    // the bland one_one will add the same fragment count times
+    color/=float(count);
 
     outFragment = color;
 }
@@ -457,8 +465,6 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
     // Multipass rendering:
     const uint32_t totNrOfLights = list.getNrOfLights();
 
-    glDisable(GL_CULL_FACE);
-
 
     for (uint32_t l = 0; l < totNrOfLights; l++)
     {
@@ -484,17 +490,12 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         // Render meshes:
         list.render(camera, proj, Eng::List::Pass::transparents);
 
-
-
         if (l > 0)
         {
             glEnable(GL_BLEND);
             glBlendFunc(GL_ONE,GL_ONE);
         }
         
-        glDepthMask(GL_TRUE);
-
-
         reserved->programPass2.render();
         reserved->programPass2.setMat4("projectionMat", proj);
         reserved->programPass2.setUInt("maxNodes", reserved->maxNodes);
@@ -508,12 +509,10 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
 
         list.render(camera, proj, Eng::List::Pass::transparents);
 
-        glDepthMask(GL_FALSE);
         glDisable(GL_BLEND);
     }
 
 
-    glEnable(GL_CULL_FACE);
 
 
     // Wireframe is on?
