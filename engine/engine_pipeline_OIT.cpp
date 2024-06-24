@@ -55,6 +55,7 @@ void main()
  */
 static const std::string pipeline_fs = R"(
 
+layout(early_fragment_tests) in; // Enable early depth tests
 
 // Uniform:
 #ifdef ENG_BINDLESS_SUPPORTED
@@ -246,6 +247,7 @@ void main() {
 
     //set the color as the current texel color
     vec4 color = imageLoad(resultImage, pixelCoord);
+
     color=color*(1/float(totNrOfLights));
 
     for (int i = 0; i < count; i++) {
@@ -367,8 +369,8 @@ bool Eng::PipelineOIT::init()
 
     reserved->background.create(width, height, Texture::Format::r8g8b8a8);
     reserved->fboBackground.attachTexture(reserved->background);
-
     reserved->fboBackground.validate();
+
 
     this->setDirty(false);
     return true;
@@ -428,7 +430,9 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
     const int height = winSize.y;
 
 
+    //copio il frame e il depth buffer in un fbo
     reserved->fboBackground.blit(width, height, true);
+    
     // mi copio il risultato della scena solo con gli oggetti non trasparenti
     Fbo::reset(width, height);
 
@@ -493,7 +497,6 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
 
         reserved->programPass2.render();
         reserved->programPass2.setMat4("projectionMat", proj);
-
         reserved->programPass2.setUInt("maxNodes", reserved->maxNodes);
 
         reserved->background.bindImage(1);
@@ -504,7 +507,6 @@ bool Eng::PipelineOIT::render(const glm::mat4& camera, const glm::mat4& proj, co
         reserved->programPass2.setUInt("currentLight", l);
 
         list.render(camera, proj, Eng::List::Pass::transparents);
-        
 
         glDepthMask(GL_FALSE);
         glDisable(GL_BLEND);
